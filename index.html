@@ -86,7 +86,7 @@
     .form-group input, .form-group select { background-color: #111111; border: 1px solid #333333; color: #ffffff; padding: 10px; border-radius: 6px; font-size: 0.9rem; outline: none; width: 100%; }
     .form-group input:focus, .form-group select:focus { border-color: #ff0000; }
 
-    .tabela-container { margin-bottom: 20px; overflow-x: auto; }
+    .tabela-container { margin-bottom: 15px; overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; margin-top: 10px; min-width: 500px; }
     th, td { padding: 8px; text-align: left; border-bottom: 1px solid #222222; }
     th { background-color: #111111; color: #ff0000; font-size: 0.8rem; }
@@ -94,12 +94,27 @@
     .btn-remover { background: #ff0000; color: #fff; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; }
     .btn-add { background-color: #111111; color: #ffffff; border: 1px solid #ff0000; padding: 10px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 10px; width: 100%; }
 
+    /* CAIXA DE TOTAL */
+    .total-box { text-align: right; font-size: 1.4rem; font-weight: bold; color: #ffffff; margin-bottom: 15px; padding: 10px; background: #0a0a0a; border: 1px solid #222; border-radius: 6px; }
+    .total-val { color: #25d366; }
+
+    /* SEÇÃO DO PIX */
+    .pix-container {
+      background: #0a0a0a; border: 2px solid #25d366; border-radius: 8px;
+      padding: 15px; margin-bottom: 20px; display: flex; gap: 15px; align-items: center; flex-wrap: wrap;
+    }
+    .pix-qr-box { background: #ffffff; padding: 6px; border-radius: 6px; display: flex; justify-content: center; align-items: center; }
+    .pix-info { flex: 1; min-width: 200px; }
+    .pix-title { color: #25d366; font-weight: bold; font-size: 1.1rem; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+    .pix-detalhes { font-size: 0.85rem; color: #cccccc; line-height: 1.4; margin-bottom: 8px; }
+    .pix-copia-box { display: flex; gap: 6px; }
+    .pix-input-code { background: #111; border: 1px solid #333; color: #888; font-size: 0.75rem; padding: 6px; border-radius: 4px; width: 100%; font-family: monospace; }
+    .btn-copiar-pix { background: #25d366; color: #000; border: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; cursor: pointer; white-space: nowrap; }
+
     .resumo-garantia { background-color: #0a0a0a; border: 1px solid #222222; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
     .garantia-box { color: #ff0000; font-weight: bold; font-size: 0.85rem; margin-top: 5px; }
     .garantia-alertas { margin-top: 10px; padding-top: 8px; border-top: 1px dashed #333333; font-size: 0.78rem; color: #aaaaaa; line-height: 1.4; }
     .garantia-alertas ul { margin-left: 18px; margin-top: 4px; }
-    .total-box { text-align: right; font-size: 1.3rem; font-weight: bold; color: #ffffff; margin-top: 10px; }
-    .total-val { color: #25d366; }
 
     .acoes { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
     .btn-imprimir, .btn-historico { flex: 1; min-width: 140px; padding: 12px; border-radius: 6px; font-weight: bold; font-size: 0.95rem; cursor: pointer; border: none; text-align: center; }
@@ -114,10 +129,12 @@
     .card-header { display: flex; justify-content: space-between; align-items: center; color: #ff0000; font-weight: bold; margin-bottom: 6px; flex-wrap: wrap; gap: 5px; }
     .card-detalhes { font-size: 0.85rem; color: #cccccc; line-height: 1.4; }
     .card-itens { margin-top: 8px; padding-top: 8px; border-top: 1px dashed #333; font-size: 0.8rem; color: #888888; }
-    .botoes-card { margin-top: 10px; display: flex; gap: 8px; justify-content: flex-end; }
+    .botoes-card { margin-top: 10px; display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+    .btn-edit-card { background-color: #222211; color: #ffaa00; border: 1px solid #ffaa00; padding: 6px 12px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; cursor: pointer; }
+    .btn-reimprimir-card { background-color: #112233; color: #3399ff; border: 1px solid #3399ff; padding: 6px 12px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; cursor: pointer; }
     .btn-excluir-card { background-color: #331111; color: #ff4444; border: 1px solid #ff0000; padding: 6px 12px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; cursor: pointer; }
 
-    /* ESTILOS DEVEDORES & PAINEL DE TOTAL */
+    /* ESTILOS DEVEDORES */
     .painel-total-devedores {
       background: #111111; border: 2px solid #ff0000; border-radius: 8px;
       padding: 15px; margin-bottom: 20px; text-align: center;
@@ -164,25 +181,36 @@
       .contatos-container { align-items: flex-start; }
     }
 
+    /* REGRAS DE IMPRESSÃO / GERAR PDF */
     @media print {
       @page { size: A4 portrait; margin: 10mm; }
       html, body { background-color: #ffffff !important; color: #000000 !important; padding: 0 !important; margin: 0 !important; height: auto !important; }
-      .login-overlay, .historico-section, .dashboard-menu, .btn-voltar, .modal-overlay { display: none !important; }
-      .container { border: none !important; box-shadow: none !important; max-width: 100% !important; width: 100% !important; display: block !important; background: #ffffff !important; padding: 0 !important; margin: 0 !important; page-break-after: avoid; }
+      
+      .login-overlay, .historico-section, .dashboard-menu, .btn-voltar, .modal-overlay, #devedoresContainer, .btn-copiar-pix { display: none !important; }
+      
+      #osContainer { border: none !important; box-shadow: none !important; max-width: 100% !important; width: 100% !important; display: block !important; background: #ffffff !important; padding: 0 !important; margin: 0 !important; page-break-after: avoid; }
       .btn-add, .btn-remover, .acoes, .status-badge { display: none !important; }
-      header { border-bottom: 2px solid #ff0000 !important; margin-bottom: 10mm !important; page-break-inside: avoid; }
+      header { border-bottom: 2px solid #ff0000 !important; margin-bottom: 8mm !important; page-break-inside: avoid; }
       .brand-title, .brand-subtitle, .section-title { color: #ff0000 !important; }
-      .slogan, .contato-item, .form-group label, .total-box { color: #000000 !important; }
+      .slogan, .contato-item, .form-group label { color: #000000 !important; }
       .os-numero-box { color: #ff0000 !important; border: 1px solid #ff0000 !important; background: transparent !important; }
       .form-group input, .form-group select, td input { border: none !important; background: transparent !important; color: #000000 !important; padding: 0 !important; font-weight: bold; }
       input::placeholder { color: transparent !important; }
       th { background-color: #f0f0f0 !important; color: #ff0000 !important; border-bottom: 2px solid #ff0000 !important; }
       td { border-bottom: 1px solid #dddddd !important; }
       tr { page-break-inside: avoid; }
-      .resumo-garantia { background-color: #ffffff !important; border: 1px solid #ff0000 !important; padding: 10mm !important; page-break-inside: avoid; margin-top: 10mm; }
+      
+      .total-box { background: transparent !important; border: none !important; color: #000000 !important; text-align: right !important; margin-bottom: 10px !important; }
+      .total-val { color: #000000 !important; }
+
+      .pix-container { background: #ffffff !important; border: 2px solid #000000 !important; color: #000000 !important; padding: 8px !important; margin-bottom: 5mm !important; page-break-inside: avoid; }
+      .pix-title { color: #000000 !important; }
+      .pix-detalhes { color: #333333 !important; }
+      .pix-input-code { background: transparent !important; border: none !important; color: #000000 !important; font-size: 0.65rem !important; }
+      
+      .resumo-garantia { background-color: #ffffff !important; border: 1px solid #ff0000 !important; padding: 8mm !important; page-break-inside: avoid; margin-top: 5mm; }
       .garantia-box { color: #d00000 !important; }
       .garantia-alertas { border-top-color: #cccccc !important; color: #333333 !important; }
-      .total-val { color: #000000 !important; }
     }
   </style>
 </head>
@@ -280,6 +308,30 @@
       <button class="btn-add" onclick="adicionarLinha()">+ Adicionar Item</button>
     </div>
 
+    <!-- VALOR TOTAL -->
+    <div class="total-box">TOTAL: <span class="total-val" id="valorTotal">R$ 0,00</span></div>
+
+    <!-- ÁREA DE PAGAMENTO PIX AUTOMÁTICO (ABAIXO DO TOTAL E ACIMA DA GARANTIA) -->
+    <div class="pix-container">
+      <div class="pix-qr-box" id="qrCodePixArea">
+        <img id="imgPixQr" src="" alt="QR Code Pix" style="width: 110px; height: 110px;">
+      </div>
+      <div class="pix-info">
+        <div class="pix-title">
+          <span>❖ Pagamento via Pix (Nubank)</span>
+        </div>
+        <div class="pix-detalhes">
+          <b>Titular:</b> Jose Ferreira dos Santos<br>
+          <b>CPF:</b> 039.185.634-05 | <b>Cidade:</b> Taperoá
+        </div>
+        <div class="pix-copia-box">
+          <input type="text" id="pixCopiaColaInput" class="pix-input-code" readonly value="Aguardando valor...">
+          <button class="btn-copiar-pix" onclick="copiarPixCode()">Copiar Pix</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TERMOS DE GARANTIA -->
     <div class="resumo-garantia">
       <div class="section-title" style="margin-bottom: 8px;">Termos de Garantia</div>
       <div class="grid-2">
@@ -304,8 +356,6 @@
           <li>Superaquecimento do motor por falta de água/óleo por negligência de verificação.</li>
         </ul>
       </div>
-
-      <div class="total-box">TOTAL: <span class="total-val" id="valorTotal">R$ 0,00</span></div>
     </div>
 
     <div class="acoes">
@@ -328,7 +378,6 @@
     
     <div class="section-title" style="font-size: 1.4rem; margin-bottom: 15px;">💸 Controle de Devedores</div>
 
-    <!-- PAINEL TOTAL A RECEBER -->
     <div class="painel-total-devedores">
       <div class="painel-total-titulo">💰 Total Geral a Receber</div>
       <div class="painel-total-valor" id="totalGeralDevedores">R$ 0,00</div>
@@ -359,7 +408,7 @@
     </div>
   </div>
 
-  <!-- POP-UP 1: ADICIONAR VALOR -->
+  <!-- POP-UPS -->
   <div class="modal-overlay" id="modalAdd">
     <div class="modal-card">
       <h3>➕ Adicionar Valor à Dívida</h3>
@@ -378,7 +427,6 @@
     </div>
   </div>
 
-  <!-- POP-UP 2: SUBTRAIR VALOR -->
   <div class="modal-overlay" id="modalSub">
     <div class="modal-card">
       <h3>➖ Subtrair / Abater Valor</h3>
@@ -393,7 +441,6 @@
     </div>
   </div>
 
-  <!-- POP-UP 3: EDITAR DADOS DO DEVEDOR -->
   <div class="modal-overlay" id="modalEditDev">
     <div class="modal-card">
       <h3>✏️ Editar Dados do Devedor</h3>
@@ -412,7 +459,6 @@
     </div>
   </div>
 
-  <!-- POP-UP 4: EDITAR LANÇAMENTO ESPECÍFICO DO HISTÓRICO -->
   <div class="modal-overlay" id="modalEditItemHist">
     <div class="modal-card">
       <h3>✏️ Editar Lançamento</h3>
@@ -452,8 +498,10 @@
     let todassNotasSalvas = [];
     let todosDevedores = [];
     let codigoOSAtual = "";
+    let osEditandoKey = null; // Chave caso estejamos editando uma OS existente
     let devedorSelecionadoKey = null;
     let itemHistIndexSelecionado = null;
+    const tituloPadraoOriginal = document.title;
 
     // LOGIN & NAVEGAÇÃO
     function validarAcesso() {
@@ -472,7 +520,7 @@
       document.getElementById('dashboardMenu').style.display = "none";
       if (modulo === 'os') {
         document.getElementById('osContainer').style.display = "block";
-        gerarCodigoOS();
+        if (!osEditandoKey) gerarCodigoOS();
       } else if (modulo === 'devedores') {
         document.getElementById('devedoresContainer').style.display = "block";
         carregarDevedores();
@@ -493,8 +541,75 @@
       });
     });
 
+    /* GERADOR DE PAYLOAD BR CODE (PIX) */
+    function gerarPayloadPix(chave, nome, cidade, valor, txid = "***") {
+      function emv(id, value) {
+        const len = value.length.toString().padStart(2, '0');
+        return `${id}${len}${value}`;
+      }
+
+      const cleanChave = chave.replace(/[^a-zA-Z0-9]/g, '');
+      const cleanNome = nome.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9\s]/g, "").substring(0, 25);
+      const cleanCidade = cidade.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9\s]/g, "").substring(0, 15);
+      const valorFormatted = valor.toFixed(2);
+
+      const payloadKey = emv('00', 'br.gov.bcb.pix') + emv('01', cleanChave);
+      const merchantAccount = emv('26', payloadKey);
+      const merchantCategory = emv('52', '0000');
+      const transactionCurrency = emv('53', '986');
+      const transactionAmount = emv('54', valorFormatted);
+      const countryCode = emv('58', 'BR');
+      const merchantName = emv('59', cleanNome);
+      const merchantCity = emv('60', cleanCidade);
+      const additionalData = emv('62', emv('05', txid));
+
+      const rawPayload = '000201' + merchantAccount + merchantCategory + transactionCurrency + transactionAmount + countryCode + merchantName + merchantCity + additionalData + '6304';
+
+      let crc = 0xFFFF;
+      for (let i = 0; i < rawPayload.length; i++) {
+        crc ^= rawPayload.charCodeAt(i) << 8;
+        for (let j = 0; j < 8; j++) {
+          if ((crc & 0x8000) !== 0) {
+            crc = (crc << 1) ^ 0x1021;
+          } else {
+            crc <<= 1;
+          }
+        }
+      }
+      const crcHex = (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
+      return rawPayload + crcHex;
+    }
+
+    function atualizarPixQrCode(valorTotalNum) {
+      const chavePix = "03918563405";
+      const nomeTitular = "Jose Ferreira dos Santos";
+      const cidade = "Taperoa";
+
+      if (valorTotalNum <= 0) {
+        document.getElementById('pixCopiaColaInput').value = "Informe os itens da OS para gerar o Pix";
+        document.getElementById('imgPixQr').src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><rect width='100%' height='100%' fill='%23ffffff'/><text x='50%' y='50%' font-size='10' text-anchor='middle' alignment-baseline='middle' fill='%23000000'>Sem Valor</text></svg>";
+        return;
+      }
+
+      const payload = gerarPayloadPix(chavePix, nomeTitular, cidade, valorTotalNum);
+      document.getElementById('pixCopiaColaInput').value = payload;
+      
+      const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(payload)}`;
+      document.getElementById('imgPixQr').src = qrApiUrl;
+    }
+
+    function copiarPixCode() {
+      const input = document.getElementById('pixCopiaColaInput');
+      if (input.value && !input.value.includes("Aguardando") && !input.value.includes("Informe")) {
+        input.select();
+        navigator.clipboard.writeText(input.value);
+        alert("Código Pix Copia e Cola copiado com sucesso!");
+      }
+    }
+
     /* ORDENS DE SERVIÇO */
     function gerarCodigoOS() {
+      osEditandoKey = null;
       codigoOSAtual = Math.floor(100000 + Math.random() * 900000).toString();
       document.getElementById('exibicaoCodigoOS').innerText = "Nº OS: " + codigoOSAtual;
     }
@@ -544,7 +659,9 @@
         linha.querySelector('.subtotal').value = subtotal.toFixed(2).replace('.', ',');
         totalGeral += subtotal;
       });
+
       document.getElementById('valorTotal').innerText = `R$ ${totalGeral.toFixed(2).replace('.', ',')}`;
+      atualizarPixQrCode(totalGeral);
     }
 
     function atualizarGarantia() {
@@ -555,8 +672,14 @@
     }
 
     function salvarEImprimir() {
-      const cliente = document.getElementById('clienteNome').value;
+      const cliente = document.getElementById('clienteNome').value.trim();
       if (!cliente) { alert("Informe o nome do cliente!"); return; }
+
+      const dataCampo = document.getElementById('dataNota').value;
+      const dataFormatada = dataCampo ? dataCampo.split('-').reverse().join('-') : new Date().toLocaleDateString('pt-BR').replace(/\//g, '-');
+      const nomeLimpoCliente = cliente.replace(/[^a-zA-Z0-9áàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]/g, '').trim().replace(/\s+/g, '_');
+
+      document.title = `OS_J&J_${nomeLimpoCliente}_${dataFormatada}`;
 
       const itens = [];
       document.querySelectorAll('#corpoTabela tr').forEach(linha => {
@@ -580,8 +703,15 @@
         total: document.getElementById('valorTotal').innerText
       };
 
-      db.ref("notas_servico").push(notaData).then(() => {
+      // Se estiver editando uma OS existente, atualiza no banco. Se for nova, faz o push.
+      let promessaSalvar = osEditandoKey 
+        ? db.ref("notas_servico/" + osEditandoKey).update(notaData)
+        : db.ref("notas_servico").push(notaData);
+
+      promessaSalvar.then(() => {
         window.print();
+        document.title = tituloPadraoOriginal;
+        osEditandoKey = null;
         gerarCodigoOS();
       });
     }
@@ -619,11 +749,68 @@
           <div class="card-detalhes"><b>Veículo:</b> ${nota.veiculo || 'N/I'} | <b>Placa:</b> ${nota.placa || 'N/I'}<br><b>Data:</b> ${nota.data}</div>
           <div class="card-itens"><b>Itens:</b> ${itensTxt}</div>
           <div class="botoes-card">
+            <button class="btn-edit-card" onclick="carregarOSEParaEdicao('${nota.idKey}')">✏️ Editar</button>
+            <button class="btn-reimprimir-card" onclick="reimprimirOS('${nota.idKey}')">🖨️ Reimprimir</button>
             <button class="btn-excluir-card" onclick="excluirNota('${nota.idKey}')">🗑️ Excluir</button>
           </div>
         `;
         container.appendChild(card);
       });
+    }
+
+    /* CARREGAR OS NO FORMULÁRIO PARA EDIÇÃO */
+    function carregarOSEParaEdicao(key) {
+      const nota = todassNotasSalvas.find(n => n.idKey === key);
+      if (!nota) return;
+
+      osEditandoKey = key; // Marca que o formulário está em modo de edição
+      codigoOSAtual = nota.codigoOS || "---";
+      document.getElementById('exibicaoCodigoOS').innerText = "Nº OS: " + codigoOSAtual + " (Editando)";
+      document.getElementById('clienteNome').value = nota.cliente || "";
+      document.getElementById('clienteTel').value = nota.telefone || "";
+      document.getElementById('veiculoModelo').value = nota.veiculo || "";
+      document.getElementById('veiculoPlaca').value = nota.placa || "";
+      document.getElementById('dataNota').value = nota.data || "";
+      document.getElementById('tempoGarantia').value = nota.garantiaDias || "90";
+      atualizarGarantia();
+
+      const tbody = document.getElementById('corpoTabela');
+      tbody.innerHTML = "";
+
+      if (nota.itens && nota.itens.length > 0) {
+        nota.itens.forEach(item => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td><input type="text" class="desc" value="${item.descricao || ''}"></td>
+            <td><input type="number" class="qtd" value="${item.qtd || 1}" min="1" oninput="calcularTotais()"></td>
+            <td><input type="text" class="valor" value="${item.valorUnitario || '0,00'}" oninput="mascaraECalcular(this)"></td>
+            <td><input type="text" class="subtotal" value="${item.subtotal || '0,00'}" readonly></td>
+            <td><button class="btn-remover" onclick="removerLinha(this)">X</button></td>
+          `;
+          tbody.appendChild(tr);
+        });
+      } else {
+        adicionarLinha();
+      }
+
+      calcularTotais();
+
+      // Esconde o histórico e rola a tela até o topo para editar
+      document.getElementById('historicoSection').style.display = "none";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      alert(`Você está editando a OS Nº ${codigoOSAtual}. Faça as alterações necessárias e clique em "Imprimir / Gerar PDF" para salvar!`);
+    }
+
+    function reimprimirOS(key) {
+      carregarOSEParaEdicao(key);
+      const cliente = document.getElementById('clienteNome').value || "Cliente";
+      const dataCampo = document.getElementById('dataNota').value;
+      const dataFormatada = dataCampo ? dataCampo.split('-').reverse().join('-') : new Date().toLocaleDateString('pt-BR').replace(/\//g, '-');
+      const nomeLimpoCliente = cliente.replace(/[^a-zA-Z0-9áàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]/g, '').trim().replace(/\s+/g, '_');
+      
+      document.title = `OS_J&J_${nomeLimpoCliente}_${dataFormatada}`;
+      window.print();
+      document.title = tituloPadraoOriginal;
     }
 
     function excluirNota(key) {
@@ -747,16 +934,13 @@
       canvas.width = width;
       canvas.height = height;
 
-      // Fundo escuro esportivo
       ctx.fillStyle = "#0a0a0a";
       ctx.fillRect(0, 0, width, height);
 
-      // Borda interna vermelha
       ctx.strokeStyle = "#ff0000";
       ctx.lineWidth = 6;
       ctx.strokeRect(10, 10, width - 20, height - 20);
 
-      // Cabeçalho / Logo da Oficina
       ctx.fillStyle = "#ff0000";
       ctx.font = "bold 38px 'Times New Roman', serif";
       ctx.textAlign = "center";
@@ -767,7 +951,6 @@
       ctx.fillText("Serviços de qualidade | Tel: (83) 98710-0025", width / 2, 85);
       ctx.fillText("Instagram: @JeJ_automotors", width / 2, 105);
 
-      // Linha Divisória
       ctx.strokeStyle = "#333333";
       ctx.lineWidth = 2;
       ctx.beginPath();
@@ -775,12 +958,10 @@
       ctx.lineTo(width - 30, 125);
       ctx.stroke();
 
-      // Título do Comprovante
       ctx.fillStyle = "#ff0000";
       ctx.font = "bold 20px Arial";
       ctx.fillText("EXTRATO DE CONTA / DÍVIDA", width / 2, 155);
 
-      // Dados do Cliente
       ctx.textAlign = "left";
       ctx.fillStyle = "#ffffff";
       ctx.font = "bold 16px Arial";
@@ -789,7 +970,6 @@
         ctx.fillText(`Telefone: ${dev.telefone}`, 40, 220);
       }
 
-      // Tabela de Histórico
       ctx.fillStyle = "#222222";
       ctx.fillRect(40, 240, width - 80, 30);
       ctx.fillStyle = "#ff0000";
@@ -828,7 +1008,6 @@
         currentY += 30;
       }
 
-      // Rodapé com Saldo
       ctx.strokeStyle = "#333333";
       ctx.beginPath();
       ctx.moveTo(30, currentY + 10);
@@ -850,7 +1029,6 @@
       ctx.font = "bold 22px Arial";
       ctx.fillText(`R$ ${(dev.saldo || 0).toFixed(2).replace('.', ',')}`, width - 60, currentY + 58);
 
-      // Executa o compartilhamento da imagem
       canvas.toBlob(blob => {
         const file = new File([blob], `Extrato_${dev.nome.replace(/\s+/g, '_')}.png`, { type: 'image/png' });
         
@@ -861,7 +1039,6 @@
             text: `Olá ${dev.nome}, segue seu extrato atualizado da J&J Automotors.`
           }).catch(console.error);
         } else {
-          // Se for no computador ou navegador que não aceita o arquivo direto no botão, faz o download automático
           const link = document.createElement('a');
           link.download = `Extrato_${dev.nome.replace(/\s+/g, '_')}.png`;
           link.href = canvas.toDataURL();
