@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07070a"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
   <title>J&J Automotors - Sistema Integrado</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -212,6 +213,126 @@
       .garantia-box { color: #d00000 !important; }
       .garantia-alertas { border-top-color: #cccccc !important; color: #333333 !important; }
     }
+
+    /* ===== VISUAL NOVO ===== */
+    body{background:radial-gradient(1100px 600px at 50% -10%,#2b050a 0%,#07070a 62%) fixed;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+    .login-overlay{background:radial-gradient(900px 500px at 50% 0%,#2b050a,#050507)}
+    .login-box,.dashboard-menu,.container{background:linear-gradient(160deg,#15151b,#0b0b0f);border:1px solid #2c2c36;border-radius:22px;box-shadow:0 24px 60px rgba(0,0,0,.65),0 0 0 1px rgba(255,45,61,.14)}
+    .login-title,.brand-title,.brand-subtitle,.login-subtitle{background:linear-gradient(90deg,#ff2d3d,#ff8a4c);-webkit-background-clip:text;background-clip:text;color:transparent}
+    input,select{transition:.2s}
+    .login-box input,.form-group input,.form-group select,.busca-box input,td input{border-radius:12px;border:1px solid #2c2c36;background:#0d0d12}
+    .login-box input:focus,.form-group input:focus,.form-group select:focus,.busca-box input:focus{border-color:#ff2d3d;box-shadow:0 0 0 3px rgba(255,45,61,.18)}
+    .btn-login,.btn-imprimir,.btn-modal-confirmar{background:linear-gradient(135deg,#ff2d3d,#c9101f);border-radius:12px;box-shadow:0 8px 20px rgba(255,45,61,.3)}
+    .btn-dash{background:linear-gradient(160deg,#17171e,#0e0e13);border:1px solid #2c2c36;border-radius:16px}
+    .btn-dash:hover{background:linear-gradient(135deg,#ff2d3d,#c9101f);border-color:#ff2d3d;box-shadow:0 10px 26px rgba(255,45,61,.35)}
+    .btn-add,.btn-historico,.btn-voltar{border-radius:12px}
+    .btn-add:hover{background:#1c1c24}
+    .section-title{border-left:4px solid #ff2d3d;color:#ff4a58;letter-spacing:.5px}
+    .card-nota,.card-devedor,.pix-container,.resumo-garantia,.painel-total-devedores,.cfg-card{border-radius:16px}
+    .card-nota,.card-devedor{background:#101016;border-color:#26262f}
+    .modal-card{border-radius:18px;border:1px solid #2c2c36}
+    .lembrar{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.85rem;color:#ccc;margin:0 0 14px;cursor:pointer}
+    .lembrar input{width:auto;margin:0;accent-color:#ff2d3d}
+    .cfg-card{background:#0d0d12;border:1px solid #26262f;padding:16px;margin-bottom:16px}
+    .cfg-card .lembrar{justify-content:flex-start;margin-bottom:12px}
+    .cfg-ajuda{font-size:.78rem;color:#8a8a96;line-height:1.5;margin-top:12px}
+    #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(30px);background:#1b1b22;color:#fff;border:1px solid #ff2d3d;padding:12px 18px;border-radius:12px;opacity:0;pointer-events:none;transition:.3s;z-index:20000;max-width:90%;text-align:center;font-size:.9rem}
+    #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+    .pago-box{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+    .pago-box select{flex:1;min-width:150px;background:#0d0d12;border:1px solid #2c2c36;color:#fff;border-radius:12px;padding:11px}
+    .btn-pago,.btn-pago-card{background:linear-gradient(135deg,#1fbf5b,#13863f);color:#fff;border:none;border-radius:12px;padding:11px 16px;font-weight:bold;cursor:pointer}
+    .btn-pago-card{padding:6px 12px;border-radius:4px;font-size:.8rem}
+    .banner-os{padding:10px 14px;border-radius:12px;font-weight:bold;font-size:.9rem;margin-bottom:16px}
+    .banner-os.ok{background:#0f2a1a;border:1px solid #1fbf5b;color:#5ff09a}
+    .banner-os.pend{background:#2a2108;border:1px solid #ffaa00;color:#ffc94d}
+    .btn-salvar,.btn-nova{flex:1;min-width:140px;padding:12px;border-radius:12px;font-weight:bold;font-size:.95rem;cursor:pointer;border:none;color:#fff}
+    .btn-salvar{background:linear-gradient(135deg,#1fbf5b,#13863f)}
+    .btn-nova{background:#333;border:1px solid #555}
+    .btn-imprimir.off{opacity:.45}
+    .g-linha{margin-top:8px;font-weight:bold;font-size:.82rem}
+    .g-ok{color:#5ff09a}.g-alerta{color:#ffc94d}.g-venc{color:#ff5a66}.g-none{color:#888}
+    .selo-pago,.print-only{display:none}
+    .busca-box select{width:100%;margin-top:8px;padding:10px;background:#0d0d12;border:1px solid #2c2c36;color:#fff;border-radius:12px}
+    @media print{
+      .print-only{display:block!important}
+      .banner-os,.acoes,.btn-nova{display:none!important}
+      select{-webkit-appearance:none;appearance:none}
+      table{min-width:0!important;border:1px solid #bbb}
+      th,td{border:1px solid #ddd!important;padding:6px 8px!important}
+      .section-title{border-left:4px solid #ff0000!important}
+      .selo-pago.on{display:inline-block!important;float:left;margin:4px 0;border:3px solid #1a8f3f;color:#1a8f3f!important;font-weight:900;font-size:1.4rem;padding:2px 16px;border-radius:8px;transform:rotate(-6deg)}
+      .total-box{border-top:2px solid #000!important;font-size:1.5rem!important;padding-top:6px!important}
+      .assin{display:flex;justify-content:space-around;margin-top:14mm;text-align:center;font-size:.8rem;color:#000}
+      .rodape-txt{margin-top:8mm;text-align:center;font-size:.75rem;color:#555;border-top:1px solid #ddd;padding-top:3mm}
+    }
+    @media screen{.historico-section{display:block!important}}
+    #printOS{display:none}
+    @media print{
+      body.print-hist #osContainer{display:none!important}
+      body.print-hist #printOS{display:block!important;color:#000;font-family:Arial,Helvetica,sans-serif}
+      .pv-head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid #ff0000;padding-bottom:8px;margin-bottom:10px}
+      .pv-brand{font:bold 34px 'Times New Roman',serif;color:#ff0000;line-height:1}
+      .pv-sub{font-weight:900;color:#ff0000;font-size:18px}
+      .pv-os{color:#ff0000;font-weight:bold;border:1px solid #ff0000;padding:4px 10px;border-radius:6px;display:inline-block;margin-top:6px}
+      .pv-info{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;font-size:13px;margin-bottom:10px}
+      .pv-t{width:100%;border-collapse:collapse;font-size:13px;min-width:0}
+      .pv-t th{background:#f0f0f0;color:#ff0000;border:1px solid #ddd;padding:6px;text-align:left}
+      .pv-t td{border:1px solid #ddd;padding:6px}
+      .pv-total{text-align:right;font-size:22px;font-weight:bold;border-top:2px solid #000;margin-top:8px;padding-top:6px}
+      .pv-stamp{display:inline-block;float:left;margin-top:6px;border:3px solid #1a8f3f;color:#1a8f3f;font-weight:900;font-size:22px;padding:2px 16px;border-radius:8px;transform:rotate(-6deg)}
+      .pv-pix{display:flex;gap:12px;align-items:center;border:2px solid #000;padding:8px;margin-top:10px;font-size:12px;page-break-inside:avoid}
+      .pv-gar{border:1px solid #ff0000;padding:8px;margin-top:10px;font-size:12px;page-break-inside:avoid}
+      .pv-gar ul{margin:4px 0 0 18px;color:#333}
+    }
+    /* ===== POLIMENTO ===== */
+    @keyframes fi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+    .container,.dashboard-menu{animation:fi .35s ease}
+    header{border-bottom:2px solid transparent;border-image:linear-gradient(90deg,#ff2d3d,rgba(255,45,61,0)) 1}
+    ::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-thumb{background:#2c2c36;border-radius:8px}
+    ::placeholder{color:#5d5d6b}
+    .btn-dash{padding:28px 15px;font-size:1.1rem;transition:.25s}
+    .btn-dash span:first-child{background:rgba(255,45,61,.12);width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+    .btn-dash:hover span:first-child{background:rgba(255,255,255,.2)}
+    tbody tr:hover td{background:#0f0f15}
+    .cards-container{max-height:75vh;padding-right:4px;gap:10px}
+    .card-nota{cursor:pointer;transition:.2s;border-left:4px solid #ff9f1c;padding:14px 16px}
+    .card-nota:hover{background:#15151c;transform:translateY(-1px)}
+    .card-nota.paga{border-left-color:#1fbf5b}
+    .card-nota .card-header{color:#fff;font-size:1rem;margin-bottom:4px}
+    .card-nota .card-header b{color:#ff4a58}
+    .card-nota .tot{color:#5ff09a;white-space:nowrap}
+    .chev{display:inline-block;font-style:normal;color:#8a8a96;transition:.25s;margin-left:4px}
+    .card-nota.open .chev{transform:rotate(180deg)}
+    .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+    .chip{display:inline-block;padding:4px 10px;border-radius:999px;font-size:.74rem;font-weight:bold;background:#1a1a22;border:1px solid #2c2c36}
+    .chip.pago{color:#5ff09a;border-color:#1fbf5b;background:#0f2a1a}
+    .chip.pend{color:#ffc94d;border-color:#8a6a10;background:#2a2108}
+    .chip.g-venc{border-color:#8a1f28;background:#2a0b0e}
+    .card-nota .card-itens,.card-nota .botoes-card{display:none}
+    .card-nota.open .card-itens{display:block;animation:fi .25s ease}
+    .card-nota.open .botoes-card{display:flex;animation:fi .25s ease;margin-top:12px}
+    .botoes-card button{border-radius:10px;padding:10px 14px;font-size:.85rem;flex:1;min-width:110px}
+    .dev-acoes button{border-radius:10px}
+    /* ===== DEVEDORES ===== */
+    .painel-total-devedores{background:linear-gradient(135deg,#1a0a0d,#0d0d12);border:1px solid #5a1a22;padding:20px}
+    .painel-total-valor{font-size:2.3rem;letter-spacing:.5px}
+    .painel-sub{color:#8a8a96;font-size:.85rem;margin-top:4px}
+    .card-devedor{cursor:pointer;transition:.2s;border-left:4px solid #ff9f1c;padding:14px 16px;background:#101016;border-color:#26262f;border-radius:16px}
+    .card-devedor:hover{background:#15151c;transform:translateY(-1px)}
+    .card-devedor.quitado{border-left-color:#1fbf5b}
+    .card-devedor .dev-header{margin-bottom:0;flex-wrap:nowrap;gap:10px}
+    .dev-id{display:flex;align-items:center;gap:12px;min-width:0}
+    .avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#ff2d3d,#c9101f);color:#fff;font-weight:bold;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+    .dev-nome{color:#fff;font-size:1rem;overflow:hidden;text-overflow:ellipsis}
+    .dev-tel{color:#8a8a96;font-size:.78rem;font-weight:normal}
+    .dev-saldo.quit{color:#5ff09a}
+    .card-devedor .dev-acoes,.card-devedor .dev-historico-lista{display:none}
+    .card-devedor.open .dev-acoes{display:flex;animation:fi .25s ease;margin-top:12px}
+    .card-devedor.open .dev-historico-lista{display:block;animation:fi .25s ease}
+    .card-devedor.open .chev{transform:rotate(180deg)}
+    .dev-acoes button{flex:1;min-width:120px;padding:10px 12px;font-size:.85rem}
+    @media print{header{border-image:none!important}}
+    @media print{.brand-title,.brand-subtitle{background:none!important}#configContainer,#toast,.pago-box{display:none!important}}
   </style>
 </head>
 <body>
@@ -223,6 +344,7 @@
       <div class="login-subtitle">Automotors</div>
       <p style="color: #cccccc; font-size: 0.85rem; margin-bottom: 15px;">Digite a senha de acesso:</p>
       <input type="password" id="senhaInput" placeholder="Senha de Acesso" onkeypress="checarEnter(event)">
+      <label class="lembrar"><input type="checkbox" id="lembrarAparelho" checked> Manter conectado neste aparelho</label>
       <button class="btn-login" onclick="validarAcesso()">ENTRAR</button>
       <div class="erro-senha" id="erroSenha">Senha incorreta. Tente novamente!</div>
     </div>
@@ -242,6 +364,10 @@
       <button class="btn-dash" onclick="abrirModulo('devedores')">
         <span style="font-size: 2rem;">💸</span>
         <span>Controle de Devedores</span>
+      </button>
+      <button class="btn-dash" style="grid-column:1/-1" onclick="abrirModulo('config')">
+        <span style="font-size: 2rem;">⚙️</span>
+        <span>Configurações</span>
       </button>
     </div>
   </div>
@@ -270,6 +396,8 @@
         <span class="status-badge statusConexao">Conectando...</span>
       </div>
     </header>
+
+    <div id="bannerOS" class="banner-os pend"></div>
 
     <div class="section-title">Dados do Atendimento</div>
     <div class="grid-2">
@@ -308,6 +436,7 @@
       <button class="btn-add" onclick="adicionarLinha()">+ Adicionar Item</button>
     </div>
 
+    <div class="selo-pago" id="seloPago">PAGO</div>
     <!-- VALOR TOTAL -->
     <div class="total-box">TOTAL: <span class="total-val" id="valorTotal">R$ 0,00</span></div>
 
@@ -341,8 +470,11 @@
             <option value="30">30 Dias</option>
             <option value="90" selected>90 Dias (Padrão)</option>
             <option value="180">180 Dias</option>
+            <option value="365">1 Ano (365 dias)</option>
+            <option value="custom">✏️ Personalizado (digitar dias)</option>
             <option value="0">Sem Garantia</option>
           </select>
+          <input type="number" id="garantiaCustom" min="1" placeholder="Quantidade de dias" style="display:none;margin-top:8px" oninput="atualizarGarantia()">
         </div>
         <div class="garantia-box" id="textoGarantia">Garantia válida por 90 dias contra defeitos de fabricação de peças ou falhas de montagem.</div>
       </div>
@@ -358,19 +490,35 @@
       </div>
     </div>
 
+    <div class="print-only">
+      <div class="assin"><div>______________________________<br>Assinatura do Cliente</div><div>______________________________<br>J&amp;J Automotors</div></div>
+      <div class="rodape-txt">Obrigado pela preferência! • (83) 98710-0025 • @JeJ_automotors</div>
+    </div>
+
+    <div class="pago-box">
+      <select id="pagoForma"><option>Dinheiro</option><option>Pix</option><option>Maquininha - Crédito</option><option>Maquininha - Débito</option><option>Outro</option></select>
+      <button class="btn-pago" onclick="marcarPagoForm()">✅ Marcar como pago</button>
+    </div>
+
     <div class="acoes">
-      <button class="btn-historico" onclick="toggleHistorico()">📋 Ver Ordens Salvas</button>
-      <button class="btn-imprimir" onclick="salvarEImprimir()">🖨️ Imprimir / Gerar PDF</button>
+      <button class="btn-nova" onclick="novaOS()">➕ Nova OS</button>
+      <button class="btn-historico" onclick="toggleHistorico()">📋 Ordens Salvas</button>
+      <button class="btn-salvar" onclick="salvarOS()">💾 Salvar OS</button>
+      <button class="btn-imprimir" id="btnImprimir" onclick="imprimirOS()">🖨️ Imprimir / PDF</button>
     </div>
 
     <div class="historico-section" id="historicoSection">
-      <div class="section-title">Histórico de Ordens no Banco</div>
-      <div class="busca-box"><input type="text" id="inputBusca" placeholder="🔍 Digite CÓDIGO, Cliente ou Placa..." oninput="filtrarHistorico()"></div>
+      <div class="section-title">📋 Ordens de Serviço</div>
+      <p class="cfg-ajuda" style="margin:0 0 10px">Toque em uma OS para ver os detalhes e as opções.</p>
+      <div class="busca-box"><input type="text" id="inputBusca" placeholder="🔍 Digite CÓDIGO, Cliente ou Placa..." oninput="filtrarHistorico()">
+        <select id="filtroGarantia" onchange="filtrarHistorico()"><option value="">🛡️ Todas as garantias</option><option value="ok">Em garantia</option><option value="venc">Garantia vencida</option><option value="sem">Sem garantia</option></select></div>
       <div class="cards-container" id="cardsHistorico">
         <p style="color: #666; font-size: 0.85rem; text-align: center;">Carregando notas...</p>
       </div>
     </div>
   </div>
+
+  <div id="printOS"></div>
 
   <!-- MÓDULO 2: CONTROLE DE DEVEDORES -->
   <div class="container" id="devedoresContainer">
@@ -381,9 +529,10 @@
     <div class="painel-total-devedores">
       <div class="painel-total-titulo">💰 Total Geral a Receber</div>
       <div class="painel-total-valor" id="totalGeralDevedores">R$ 0,00</div>
+      <div class="painel-sub" id="qtdDevedores"></div>
     </div>
 
-    <div style="background: #0a0a0a; border: 1px solid #333; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+    <div class="cfg-card">
       <div class="section-title" style="font-size: 0.9rem;">Cadastrar Novo Devedor</div>
       <div class="grid-2">
         <div class="form-group">
@@ -399,6 +548,7 @@
     </div>
 
     <div class="section-title">Clientes Cadastrados / Dívidas</div>
+    <p class="cfg-ajuda" style="margin:0 0 10px">Toque em um cliente para ver o histórico e as opções.</p>
     <div class="busca-box">
       <input type="text" id="buscaDevedor" placeholder="🔍 Buscar devedor..." oninput="filtrarDevedores()">
     </div>
@@ -407,6 +557,34 @@
       <p style="color: #666; font-size: 0.85rem; text-align: center;">Carregando devedores...</p>
     </div>
   </div>
+
+  <!-- MÓDULO 3: CONFIGURAÇÕES -->
+  <div class="container" id="configContainer">
+    <button class="btn-voltar" onclick="voltarAoMenu()">← Voltar ao Menu</button>
+    <div class="section-title" style="font-size: 1.4rem; margin-bottom: 15px;">⚙️ Configurações</div>
+
+    <div class="cfg-card">
+      <div class="section-title">🔒 Segurança deste aparelho</div>
+      <p class="cfg-ajuda" id="statusAparelho" style="margin:0 0 12px"></p>
+      <button class="btn-add" onclick="sair()">Desconectar este aparelho</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modalPago">
+    <div class="modal-card">
+      <h3>✅ Marcar OS como paga</h3>
+      <div class="form-group">
+        <label>Forma de pagamento:</label>
+        <select id="pagoForma2"><option>Dinheiro</option><option>Pix</option><option>Maquininha - Crédito</option><option>Maquininha - Débito</option><option>Outro</option></select>
+      </div>
+      <div class="modal-botoes">
+        <button class="btn-modal-cancelar" onclick="fecharModais()">Cancelar</button>
+        <button class="btn-modal-confirmar" style="background:#1fbf5b;" onclick="confirmarPago()">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
 
   <!-- POP-UPS -->
   <div class="modal-overlay" id="modalAdd">
@@ -504,14 +682,84 @@
     const tituloPadraoOriginal = document.title;
 
     // LOGIN & NAVEGAÇÃO
-    function validarAcesso() {
-      const senhaInserida = document.getElementById('senhaInput').value;
-      if (senhaInserida === "jj456700") {
-        document.getElementById('loginOverlay').style.display = "none";
-        document.getElementById('dashboardMenu').style.display = "block";
-      } else {
-        document.getElementById('erroSenha').style.display = "block";
+    const HASH_OK = "803d44f1b681d386be7e5613b3521b4e7696af0d0602cf953fadc78101fe3cda"; // SHA-256 (senha não fica mais em texto puro)
+
+    async function sha(t) {
+      const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t));
+      return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join('');
+    }
+    function esc(t) {
+      return String(t == null ? '' : t).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+    function toast(msg) {
+      const t = document.getElementById('toast');
+      t.innerText = msg; t.classList.add('on');
+      clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('on'), 3500);
+    }
+
+    async function validarAcesso() {
+      const err = document.getElementById('erroSenha');
+      const lock = +localStorage.getItem('jj_lock') || 0;
+      if (Date.now() < lock) {
+        err.innerText = "Muitas tentativas. Aguarde " + Math.ceil((lock - Date.now()) / 1000) + "s.";
+        err.style.display = "block"; return;
       }
+      const h = await sha('jj@oficina:' + document.getElementById('senhaInput').value);
+      if (h === HASH_OK) {
+        localStorage.removeItem('jj_lock'); localStorage.setItem('jj_try', '0');
+        if (document.getElementById('lembrarAparelho').checked) {
+          const exp = Date.now() + 30 * 864e5; // 30 dias
+          localStorage.setItem('jj_auth', JSON.stringify({ exp: exp, v: await sha(HASH_OK + ':' + exp) }));
+        }
+        document.getElementById('senhaInput').value = "";
+        entrar();
+      } else {
+        const n = (+localStorage.getItem('jj_try') || 0) + 1;
+        localStorage.setItem('jj_try', n);
+        if (n >= 5) { localStorage.setItem('jj_lock', Date.now() + 60000); localStorage.setItem('jj_try', '0'); }
+        err.innerText = n >= 5 ? "Muitas tentativas. Aguarde 60s." : "Senha incorreta. Tente novamente!";
+        err.style.display = "block";
+      }
+    }
+
+    function entrar() {
+      document.getElementById('loginOverlay').style.display = "none";
+      document.getElementById('dashboardMenu').style.display = "block";
+    }
+
+    async function autoLogin() {
+      try {
+        const a = JSON.parse(localStorage.getItem('jj_auth') || 'null');
+        if (a && a.exp > Date.now() && a.v === await sha(HASH_OK + ':' + a.exp)) entrar();
+        else localStorage.removeItem('jj_auth');
+      } catch (e) {}
+    }
+
+    let osPagoKey = null;
+    function marcarPagoForm() {
+      if (totalCentavos() <= 0) { toast("Informe os itens da OS."); return; }
+      window.__pagoVia = document.getElementById('pagoForma').value;
+      salvarOS();
+    }
+    function abrirModalPago(k) { osPagoKey = k; document.getElementById('modalPago').style.display = "flex"; }
+    function confirmarPago() {
+      db.ref("notas_servico/" + osPagoKey).update({
+        pago: true, pagoVia: document.getElementById('pagoForma2').value, pagoEm: new Date().toLocaleString('pt-BR')
+      }).then(() => { fecharModais(); toast("✅ OS marcada como paga"); });
+    }
+    function desfazerPago(k) {
+      if (confirm("Desfazer o pagamento desta OS?")) db.ref("notas_servico/" + k).update({ pago: null, pagoVia: null, pagoEm: null });
+    }
+
+    function sair() { localStorage.removeItem('jj_auth'); location.reload(); }
+
+    function atualizarStatusAparelho() {
+      let txt = "Este aparelho NÃO está salvo: a senha será pedida ao reabrir.";
+      try {
+        const a = JSON.parse(localStorage.getItem('jj_auth') || 'null');
+        if (a && a.exp > Date.now()) txt = "✅ Este aparelho está conectado até " + new Date(a.exp).toLocaleDateString('pt-BR') + " (30 dias após o último login).";
+      } catch (e) {}
+      document.getElementById('statusAparelho').innerText = txt;
     }
 
     function checarEnter(e) { if (e.key === 'Enter') validarAcesso(); }
@@ -521,6 +769,10 @@
       if (modulo === 'os') {
         document.getElementById('osContainer').style.display = "block";
         if (!osEditandoKey) gerarCodigoOS();
+        if (!histCarregado) { histCarregado = true; carregarHistoricoFirebase(); }
+      } else if (modulo === 'config') {
+        document.getElementById('configContainer').style.display = "block";
+        atualizarStatusAparelho();
       } else if (modulo === 'devedores') {
         document.getElementById('devedoresContainer').style.display = "block";
         carregarDevedores();
@@ -528,6 +780,7 @@
     }
 
     function voltarAoMenu() {
+      document.getElementById('configContainer').style.display = "none";
       document.getElementById('osContainer').style.display = "none";
       document.getElementById('devedoresContainer').style.display = "none";
       document.getElementById('dashboardMenu').style.display = "block";
@@ -664,62 +917,97 @@
       atualizarPixQrCode(totalGeral);
     }
 
-    function atualizarGarantia() {
-      const dias = document.getElementById('tempoGarantia').value;
-      document.getElementById('textoGarantia').innerText = dias === "0" 
-        ? "Serviço sem garantia estendida aplicada." 
-        : `Garantia de ${dias} dias válida contra defeitos de fabricação de peças ou falhas na prestação do serviço.`;
+    let osSalva = false, osPago = false;
+    const iso = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    const fmtData = d => d.toLocaleDateString('pt-BR');
+    const dataBase = v => v ? new Date(v + 'T00:00:00') : new Date(new Date().toDateString());
+    function fimGarantia(data, dias) { const d = dataBase(data); d.setDate(d.getDate() + dias); return d; }
+    function totalCentavos() {
+      return Math.round(converterParaNumero(document.getElementById('valorTotal').innerText.replace('R$', '')) * 100);
     }
 
-    function salvarEImprimir() {
+    function garantiaAtual() {
+      const sel = document.getElementById('tempoGarantia').value;
+      const dias = sel === 'custom' ? Math.max(0, parseInt(document.getElementById('garantiaCustom').value) || 0) : (+sel || 0);
+      return { dias: dias, fimD: dias ? fimGarantia(document.getElementById('dataNota').value, dias) : null };
+    }
+    function atualizarGarantia() {
+      document.getElementById('garantiaCustom').style.display = document.getElementById('tempoGarantia').value === 'custom' ? 'block' : 'none';
+      const g = garantiaAtual();
+      document.getElementById('textoGarantia').innerText = g.dias
+        ? `Garantia de ${g.dias} dias, válida de ${fmtData(dataBase(document.getElementById('dataNota').value))} até ${fmtData(g.fimD)}, contra defeitos de fabricação de peças ou falhas na prestação do serviço.`
+        : "Serviço sem garantia estendida aplicada.";
+    }
+    function statusGarantia(n) {
+      const dias = +n.garantiaDias || 0;
+      if (!dias) return { t: "Sem garantia", c: "g-none", k: "sem" };
+      const fim = fimGarantia(n.data, dias), r = Math.round((fim - new Date(new Date().toDateString())) / 864e5);
+      if (r < 0) return { t: `⛔ Garantia vencida em ${fmtData(fim)} (há ${-r} dia${-r > 1 ? 's' : ''})`, c: "g-venc", k: "venc" };
+      return { t: `🛡️ Em garantia até ${fmtData(fim)} — ${r === 0 ? 'vence hoje' : 'faltam ' + r + ' dia' + (r > 1 ? 's' : '')}`, c: r <= 7 ? "g-alerta" : "g-ok", k: "ok" };
+    }
+
+    function atualizarBanner() {
+      const b = document.getElementById('bannerOS');
+      b.className = 'banner-os ' + (osSalva ? 'ok' : 'pend');
+      b.innerText = (osEditandoKey ? '✏️ Editando OS Nº ' : '🆕 Nova OS Nº ') + codigoOSAtual + (osSalva ? ' — ✅ salva' : ' — ⚠️ não salva');
+      document.getElementById('btnImprimir').classList.toggle('off', !osSalva);
+      document.getElementById('seloPago').classList.toggle('on', osPago);
+    }
+    function marcarAlterada() { osSalva = false; atualizarBanner(); }
+
+    function salvarOS() {
+      const via = window.__pagoVia; window.__pagoVia = null;
       const cliente = document.getElementById('clienteNome').value.trim();
-      if (!cliente) { alert("Informe o nome do cliente!"); return; }
-
-      const dataCampo = document.getElementById('dataNota').value;
-      const dataFormatada = dataCampo ? dataCampo.split('-').reverse().join('-') : new Date().toLocaleDateString('pt-BR').replace(/\//g, '-');
-      const nomeLimpoCliente = cliente.replace(/[^a-zA-Z0-9áàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]/g, '').trim().replace(/\s+/g, '_');
-
-      document.title = `OS_J&J_${nomeLimpoCliente}_${dataFormatada}`;
-
+      if (!cliente) { toast("Informe o nome do cliente!"); return Promise.resolve(false); }
       const itens = [];
-      document.querySelectorAll('#corpoTabela tr').forEach(linha => {
-        itens.push({
-          descricao: linha.querySelector('.desc').value,
-          qtd: linha.querySelector('.qtd').value,
-          valorUnitario: linha.querySelector('.valor').value,
-          subtotal: linha.querySelector('.subtotal').value
-        });
-      });
-
-      const notaData = {
-        codigoOS: codigoOSAtual,
-        cliente: cliente,
+      document.querySelectorAll('#corpoTabela tr').forEach(l => itens.push({
+        descricao: l.querySelector('.desc').value, qtd: l.querySelector('.qtd').value,
+        valorUnitario: l.querySelector('.valor').value, subtotal: l.querySelector('.subtotal').value
+      }));
+      const g = garantiaAtual();
+      const nota = {
+        codigoOS: codigoOSAtual, cliente: cliente,
         telefone: document.getElementById('clienteTel').value,
         veiculo: document.getElementById('veiculoModelo').value,
         placa: document.getElementById('veiculoPlaca').value,
-        data: document.getElementById('dataNota').value,
-        garantiaDias: document.getElementById('tempoGarantia').value,
-        itens: itens,
-        total: document.getElementById('valorTotal').innerText
+        data: document.getElementById('dataNota').value || iso(new Date()),
+        garantiaDias: String(g.dias), garantiaFim: g.fimD ? iso(g.fimD) : '',
+        itens: itens, total: document.getElementById('valorTotal').innerText
       };
-
-      // Se estiver editando uma OS existente, atualiza no banco. Se for nova, faz o push.
-      let promessaSalvar = osEditandoKey 
-        ? db.ref("notas_servico/" + osEditandoKey).update(notaData)
-        : db.ref("notas_servico").push(notaData);
-
-      promessaSalvar.then(() => {
-        window.print();
-        document.title = tituloPadraoOriginal;
-        osEditandoKey = null;
-        gerarCodigoOS();
-      });
+      if (via) { nota.pago = true; nota.pagoVia = via; nota.pagoEm = new Date().toLocaleString('pt-BR'); osPago = true; }
+      const ref = osEditandoKey ? db.ref("notas_servico/" + osEditandoKey) : db.ref("notas_servico").push();
+      return (osEditandoKey ? ref.update(nota) : ref.set(nota)).then(() => {
+        osEditandoKey = ref.key; osSalva = true; atualizarBanner();
+        toast(via ? "✅ OS salva como paga (" + via + ")" : "💾 OS Nº " + codigoOSAtual + " salva!");
+        return true;
+      }).catch(() => { toast("Erro ao salvar. Verifique a conexão."); return false; });
     }
 
+    function imprimirOS() {
+      if (!osSalva) { toast("💾 Salve a OS antes de imprimir."); return; }
+      const cliente = document.getElementById('clienteNome').value || "Cliente";
+      const dataCampo = document.getElementById('dataNota').value;
+      const dataFormatada = dataCampo ? dataCampo.split('-').reverse().join('-') : new Date().toLocaleDateString('pt-BR').replace(/\//g, '-');
+      document.title = `OS_J&J_${cliente.replace(/[^a-zA-Z0-9áàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]/g, '').trim().replace(/\s+/g, '_')}_${dataFormatada}`;
+      window.print();
+      document.title = tituloPadraoOriginal;
+    }
+
+    function novaOS() {
+      if (!osSalva && document.getElementById('clienteNome').value.trim() && !confirm("Há alterações não salvas. Descartar e iniciar nova OS?")) return;
+      ['clienteNome', 'clienteTel', 'veiculoModelo', 'veiculoPlaca', 'garantiaCustom'].forEach(id => document.getElementById(id).value = "");
+      document.getElementById('dataNota').valueAsDate = new Date();
+      document.getElementById('tempoGarantia').value = "90";
+      document.getElementById('corpoTabela').innerHTML = "";
+      adicionarLinha(); osPago = false; gerarCodigoOS(); atualizarGarantia(); calcularTotais();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    let histCarregado = false;
+    const devAbertos = new Set();
+    const cardsAbertos = new Set();
     function toggleHistorico() {
-      const sec = document.getElementById('historicoSection');
-      sec.style.display = sec.style.display === "block" ? "none" : "block";
-      if (sec.style.display === "block") carregarHistoricoFirebase();
+      document.getElementById('historicoSection').scrollIntoView({ behavior: 'smooth' });
     }
 
     function carregarHistoricoFirebase() {
@@ -742,13 +1030,21 @@
       
       lista.forEach(nota => {
         const card = document.createElement('div');
-        card.className = "card-nota";
-        let itensTxt = nota.itens ? nota.itens.map(i => `${i.qtd}x ${i.descricao}`).join(', ') : 'Sem itens';
+        card.className = "card-nota " + (nota.pago ? "paga" : "aberta") + (cardsAbertos.has(nota.idKey) ? " open" : "");
+        card.onclick = e => {
+          if (e.target.closest('button')) return;
+          const on = card.classList.toggle('open');
+          on ? cardsAbertos.add(nota.idKey) : cardsAbertos.delete(nota.idKey);
+        };
+        const st = statusGarantia(nota);
+        let itensTxt = nota.itens ? nota.itens.map(i => `${esc(i.qtd)}x ${esc(i.descricao)}`).join(', ') : 'Sem itens';
         card.innerHTML = `
-          <div class="card-header"><span>🔴 Nº ${nota.codigoOS || '---'} - ${nota.cliente}</span><span>${nota.total}</span></div>
-          <div class="card-detalhes"><b>Veículo:</b> ${nota.veiculo || 'N/I'} | <b>Placa:</b> ${nota.placa || 'N/I'}<br><b>Data:</b> ${nota.data}</div>
+          <div class="card-header"><span><b>Nº ${esc(nota.codigoOS) || '---'}</b> · ${esc(nota.cliente)}</span><span class="tot">${esc(nota.total)} <i class="chev">▾</i></span></div>
+          <div class="card-detalhes"><b>Veículo:</b> ${esc(nota.veiculo) || 'N/I'} | <b>Placa:</b> ${esc(nota.placa) || 'N/I'}<br><b>Data:</b> ${nota.data}</div>
+          <div class="chips">${nota.pago ? `<span class="chip pago">✅ PAGO · ${esc(nota.pagoVia || '')}</span>` : `<span class="chip pend">⏳ Em aberto</span>`}<span class="chip ${st.c}">${st.t}</span></div>
           <div class="card-itens"><b>Itens:</b> ${itensTxt}</div>
           <div class="botoes-card">
+            ${nota.pago ? `<button class="btn-edit-card" onclick="desfazerPago('${nota.idKey}')">↩️ Desfazer pago</button>` : `<button class="btn-pago-card" onclick="abrirModalPago('${nota.idKey}')">✅ Marcar pago</button>`}
             <button class="btn-edit-card" onclick="carregarOSEParaEdicao('${nota.idKey}')">✏️ Editar</button>
             <button class="btn-reimprimir-card" onclick="reimprimirOS('${nota.idKey}')">🖨️ Reimprimir</button>
             <button class="btn-excluir-card" onclick="excluirNota('${nota.idKey}')">🗑️ Excluir</button>
@@ -771,7 +1067,9 @@
       document.getElementById('veiculoModelo').value = nota.veiculo || "";
       document.getElementById('veiculoPlaca').value = nota.placa || "";
       document.getElementById('dataNota').value = nota.data || "";
-      document.getElementById('tempoGarantia').value = nota.garantiaDias || "90";
+      const gd = String(nota.garantiaDias == null ? '90' : nota.garantiaDias), sel = document.getElementById('tempoGarantia');
+      if ([...sel.options].some(o => o.value === gd && o.value !== 'custom')) { sel.value = gd; document.getElementById('garantiaCustom').value = ""; }
+      else { sel.value = 'custom'; document.getElementById('garantiaCustom').value = gd; }
       atualizarGarantia();
 
       const tbody = document.getElementById('corpoTabela');
@@ -781,9 +1079,9 @@
         nota.itens.forEach(item => {
           const tr = document.createElement('tr');
           tr.innerHTML = `
-            <td><input type="text" class="desc" value="${item.descricao || ''}"></td>
+            <td><input type="text" class="desc" value="${esc(item.descricao)}"></td>
             <td><input type="number" class="qtd" value="${item.qtd || 1}" min="1" oninput="calcularTotais()"></td>
-            <td><input type="text" class="valor" value="${item.valorUnitario || '0,00'}" oninput="mascaraECalcular(this)"></td>
+            <td><input type="text" class="valor" value="${esc(item.valorUnitario || '0,00')}" oninput="mascaraECalcular(this)"></td>
             <td><input type="text" class="subtotal" value="${item.subtotal || '0,00'}" readonly></td>
             <td><button class="btn-remover" onclick="removerLinha(this)">X</button></td>
           `;
@@ -798,20 +1096,51 @@
       // Esconde o histórico e rola a tela até o topo para editar
       document.getElementById('historicoSection').style.display = "none";
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      alert(`Você está editando a OS Nº ${codigoOSAtual}. Faça as alterações necessárias e clique em "Imprimir / Gerar PDF" para salvar!`);
+      osSalva = true; osPago = !!nota.pago; atualizarBanner();
+      toast(`✏️ Editando OS Nº ${codigoOSAtual}. Altere e clique em "Salvar OS".`);
     }
 
     function reimprimirOS(key) {
-      carregarOSEParaEdicao(key);
-      const cliente = document.getElementById('clienteNome').value || "Cliente";
-      const dataCampo = document.getElementById('dataNota').value;
-      const dataFormatada = dataCampo ? dataCampo.split('-').reverse().join('-') : new Date().toLocaleDateString('pt-BR').replace(/\//g, '-');
-      const nomeLimpoCliente = cliente.replace(/[^a-zA-Z0-9áàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]/g, '').trim().replace(/\s+/g, '_');
-      
-      document.title = `OS_J&J_${nomeLimpoCliente}_${dataFormatada}`;
-      window.print();
-      document.title = tituloPadraoOriginal;
+      const n = todassNotasSalvas.find(x => x.idKey === key);
+      if (!n) return;
+      const itens = (n.itens || []).map(i => `<tr><td>${esc(i.descricao)}</td><td>${esc(i.qtd)}</td><td>R$ ${esc(i.valorUnitario)}</td><td>R$ ${esc(i.subtotal)}</td></tr>`).join('');
+      const dias = +n.garantiaDias || 0;
+      const gar = dias
+        ? `Garantia de ${dias} dias, válida de ${fmtData(dataBase(n.data))} até ${fmtData(fimGarantia(n.data, dias))}, contra defeitos de fabricação de peças ou falhas na prestação do serviço.`
+        : "Serviço sem garantia estendida aplicada.";
+      let pix = "";
+      const v = converterParaNumero(String(n.total || '').replace('R$', ''));
+      if (!n.pago && v > 0) {
+        const payload = gerarPayloadPix("03918563405", "Jose Ferreira dos Santos", "Taperoa", v);
+        pix = `<div class="pv-pix"><img id="pvQr" width="100" height="100" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(payload)}"><div><b>Pagamento via Pix (Nubank)</b><br>Titular: Jose Ferreira dos Santos<br>CPF: 039.185.634-05 | Cidade: Taperoá</div></div>`;
+      }
+      document.getElementById('printOS').innerHTML = `
+        <div class="pv-head">
+          <div><div class="pv-brand">J&amp;J</div><div class="pv-sub">Automotors</div><div style="font-size:12px;font-weight:bold">Serviços de qualidade<br>Você encontra aqui</div><div class="pv-os">Nº OS: ${esc(n.codigoOS)}</div></div>
+          <div style="text-align:right;font-size:13px;font-weight:bold">📞 83 98710-0025<br>@JeJ_automotors</div>
+        </div>
+        <div class="pv-info">
+          <div><b>Cliente:</b> ${esc(n.cliente)}</div><div><b>Telefone:</b> ${esc(n.telefone)}</div>
+          <div><b>Veículo:</b> ${esc(n.veiculo)}</div><div><b>Placa:</b> ${esc(n.placa)}</div>
+          <div><b>Data:</b> ${n.data ? fmtData(dataBase(n.data)) : ''}</div>${n.pago ? `<div><b>Pagamento:</b> ${esc(n.pagoVia)} em ${esc(n.pagoEm)}</div>` : ''}
+        </div>
+        <table class="pv-t"><thead><tr><th>Descrição do Serviço / Peça</th><th style="width:50px">Qtd</th><th style="width:100px">Valor Unit.</th><th style="width:100px">Total</th></tr></thead><tbody>${itens}</tbody></table>
+        ${n.pago ? '<div class="pv-stamp">PAGO</div>' : ''}
+        <div class="pv-total">TOTAL: ${esc(n.total)}</div>
+        ${pix}
+        <div class="pv-gar"><b>Termos de Garantia</b><br>${gar}<br><b>⚠️ A garantia será ANULADA em caso de:</b>
+          <ul><li>Mau uso, colisões, acidentes ou impactos no veículo;</li><li>Intervenções realizadas por terceiros/outras oficinas;</li><li>Uso de combustível ou fluidos contaminados/inadequados;</li><li>Superaquecimento do motor por falta de água/óleo.</li></ul></div>
+        <div class="assin"><div>______________________________<br>Assinatura do Cliente</div><div>______________________________<br>J&amp;J Automotors</div></div>
+        <div class="rodape-txt">Obrigado pela preferência! • (83) 98710-0025 • @JeJ_automotors</div>`;
+      const nomeLimpo = String(n.cliente || 'Cliente').replace(/[^a-zA-Z0-9áàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]/g, '').trim().replace(/\s+/g, '_');
+      document.title = `OS_J&J_${nomeLimpo}_${n.data ? n.data.split('-').reverse().join('-') : ''}`;
+      document.body.classList.add('print-hist');
+      const img = document.getElementById('pvQr');
+      let ok = false;
+      const go = () => { if (ok) return; ok = true; window.print(); };
+      if (img && !img.complete) { img.onload = go; img.onerror = go; setTimeout(go, 2500); } else go();
     }
+    window.addEventListener('afterprint', () => { document.body.classList.remove('print-hist'); document.title = tituloPadraoOriginal; });
 
     function excluirNota(key) {
       if (confirm("Deseja apagar esta OS?")) db.ref("notas_servico/" + key).remove();
@@ -819,10 +1148,10 @@
 
     function filtrarHistorico() {
       const busca = document.getElementById('inputBusca').value.toLowerCase();
-      renderizarCards(todassNotasSalvas.filter(n => 
-        (n.codigoOS && n.codigoOS.toString().includes(busca)) ||
-        (n.cliente && n.cliente.toLowerCase().includes(busca)) ||
-        (n.placa && n.placa.toLowerCase().includes(busca))
+      const fg = document.getElementById('filtroGarantia').value;
+      renderizarCards(todassNotasSalvas.filter(n =>
+        (!busca || (n.codigoOS && n.codigoOS.toString().includes(busca)) || (n.cliente && n.cliente.toLowerCase().includes(busca)) || (n.placa && n.placa.toLowerCase().includes(busca))) &&
+        (!fg || statusGarantia(n).k === fg)
       ).slice().reverse());
     }
 
@@ -871,6 +1200,8 @@
           });
         }
 
+        const qtdDev = todosDevedores.filter(d => d.saldo > 0).length;
+        document.getElementById('qtdDevedores').innerText = qtdDev === 0 ? 'Nenhum cliente em dívida 🎉' : qtdDev + ' cliente' + (qtdDev > 1 ? 's' : '') + ' em dívida';
         document.getElementById('totalGeralDevedores').innerText = `R$ ${totalAcumulado.toFixed(2).replace('.', ',')}`;
         renderizarDevedores(todosDevedores.slice().reverse());
       });
@@ -882,7 +1213,12 @@
 
       lista.forEach(dev => {
         const card = document.createElement('div');
-        card.className = "card-devedor";
+        card.className = "card-devedor " + ((dev.saldo || 0) > 0 ? "" : "quitado ") + (devAbertos.has(dev.idKey) ? "open" : "");
+        card.onclick = e => {
+          if (e.target.closest('button')) return;
+          const on = card.classList.toggle('open');
+          on ? devAbertos.add(dev.idKey) : devAbertos.delete(dev.idKey);
+        };
 
         let histHtml = dev.historico.map((h, idx) => {
           let simbolo = '➕';
@@ -890,7 +1226,7 @@
           if (h.tipo === 'sub') { simbolo = '➖'; cor = '#ff4444'; }
           return `
             <div class="item-historico-linha">
-              <div>• <b>${h.data}:</b> <span style="color:${cor}">${simbolo} R$ ${h.valor.toFixed(2).replace('.', ',')}</span> ${h.desc ? `(${h.desc})` : ''}</div>
+              <div>• <b>${h.data}:</b> <span style="color:${cor}">${simbolo} R$ ${h.valor.toFixed(2).replace('.', ',')}</span> ${h.desc ? `(${esc(h.desc)})` : ''}</div>
               <button class="btn-edit-item-hist" onclick="abrirModalEditarItemHist('${dev.idKey}', ${idx})">✏️ Editar Valor</button>
             </div>
           `;
@@ -898,10 +1234,18 @@
 
         card.innerHTML = `
           <div class="dev-header">
-            <span>👤 ${dev.nome} ${dev.telefone ? `(${dev.telefone})` : ''}</span>
-            <div class="dev-saldo-box">
-              <span class="dev-saldo">R$ ${(dev.saldo || 0).toFixed(2).replace('.', ',')}</span>
+            <div class="dev-id">
+              <div class="avatar">${esc((dev.nome || '?').trim().charAt(0).toUpperCase())}</div>
+              <div><div class="dev-nome">${esc(dev.nome)}</div><div class="dev-tel">${dev.telefone ? esc(dev.telefone) : 'Sem telefone'}</div></div>
             </div>
+            <div class="dev-saldo-box">
+              <span class="dev-saldo ${(dev.saldo || 0) > 0 ? '' : 'quit'}">R$ ${(dev.saldo || 0).toFixed(2).replace('.', ',')}</span>
+              <i class="chev">▾</i>
+            </div>
+          </div>
+          <div class="chips">
+            <span class="chip ${(dev.saldo || 0) > 0 ? 'pend' : 'pago'}">${(dev.saldo || 0) > 0 ? '⏳ Em dívida' : '✅ Quitado'}</span>
+            <span class="chip">${dev.historico.length} lançamento${dev.historico.length === 1 ? '' : 's'}</span>
           </div>
           <div class="dev-acoes">
             <button class="btn-add-dev" onclick="abrirModalAdicionar('${dev.idKey}')">➕ Adicionar Valor</button>
@@ -1094,6 +1438,7 @@
 
     function fecharModais() {
       document.getElementById('modalAdd').style.display = "none";
+      document.getElementById('modalPago').style.display = "none";
       document.getElementById('modalSub').style.display = "none";
       document.getElementById('modalEditDev').style.display = "none";
       document.getElementById('modalEditItemHist').style.display = "none";
@@ -1187,6 +1532,15 @@
       const busca = document.getElementById('buscaDevedor').value.toLowerCase();
       renderizarDevedores(todosDevedores.filter(d => d.nome.toLowerCase().includes(busca)).slice().reverse());
     }
+    const _gc = gerarCodigoOS; gerarCodigoOS = function () { _gc(); osSalva = false; osPago = false; atualizarBanner(); };
+    const _al = adicionarLinha; adicionarLinha = function () { _al(); marcarAlterada(); };
+    const _rl = removerLinha; removerLinha = function (b) { _rl(b); marcarAlterada(); };
+    ['input', 'change'].forEach(ev => document.getElementById('osContainer').addEventListener(ev, e => {
+      if (!e.target.closest('.pago-box') && !e.target.closest('.historico-section')) marcarAlterada();
+    }));
+    document.getElementById('dataNota').addEventListener('change', atualizarGarantia);
+    atualizarGarantia();
+    autoLogin();
   </script>
 </body>
 </html>
