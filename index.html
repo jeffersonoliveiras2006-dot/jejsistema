@@ -181,8 +181,8 @@
     .dev-saldo-box { display: flex; align-items: center; gap: 8px; }
     .dev-saldo { font-size: 1.2rem; color: #ff4444; font-weight: bold; }
     .dev-acoes { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
-    .btn-add-dev { background: #113311; color: #25d366; border: 1px solid #25d366; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
-    .btn-sub-dev { background: #331111; color: #ff4444; border: 1px solid #ff4444; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+    .btn-add-dev { background: #331111; color: #ff4d4d; border: 1px solid #ff4d4d; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+    .btn-sub-dev { background: #113311; color: #25d366; border: 1px solid #25d366; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
     .btn-edit-dev { background: #112233; color: #3399ff; border: 1px solid #3399ff; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
     .btn-share-dev { background: #25d366; color: #000000; border: 1px solid #25d366; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
 
@@ -357,9 +357,6 @@
     .avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#ff2d3d,#c9101f);color:#fff;font-weight:bold;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
     .dev-nome{color:#fff;font-size:1rem;overflow:hidden;text-overflow:ellipsis}
     .dev-tel{color:#8a8a96;font-size:.78rem;font-weight:normal}
-    .dev-whatsapp{display:inline-flex;align-items:center;gap:5px;color:#25d366;text-decoration:none}
-    .dev-whatsapp:hover{text-decoration:underline}
-    .dev-whatsapp svg{width:14px;height:14px;flex-shrink:0}
     .dev-saldo.quit{color:#5ff09a}
     .card-devedor .dev-acoes,.card-devedor .dev-historico-lista{display:none}
     .card-devedor.open .dev-acoes{display:flex;animation:fi .25s ease;margin-top:12px}
@@ -400,6 +397,26 @@
       #osContainer,#printOS{margin:0!important;padding:0!important;position:static!important;top:auto!important}
       #osContainer header,#printOS .pv-head{margin-top:0!important;padding-top:0!important}
     }
+
+    /* ===== ACABAMENTO PREMIUM ===== */
+    html{scroll-behavior:smooth}
+    ::selection{background:#ff2d3d;color:#fff}
+    ::-webkit-scrollbar{width:9px;height:9px}
+    ::-webkit-scrollbar-thumb{background:#2c2c36;border-radius:9px}
+    ::-webkit-scrollbar-thumb:hover{background:#ff2d3d}
+    button,.btn-dash,.card-devedor,.card-nota{-webkit-tap-highlight-color:transparent}
+    button{transition:transform .15s ease,box-shadow .2s ease,filter .2s ease}
+    button:active{transform:scale(.97)}
+    button:hover{filter:brightness(1.08)}
+    input,select,textarea{transition:border-color .2s,box-shadow .2s,background .2s}
+    input:focus,select:focus,textarea:focus{outline:none!important;border-color:#ff2d3d!important;box-shadow:0 0 0 3px rgba(255,45,61,.22)!important}
+    .dashboard-menu,.container{animation:jjIn .45s ease both}
+    .card-nota,.card-devedor{animation:jjIn .35s ease both}
+    .card-nota:hover{border-color:#3a3a46;transform:translateY(-1px)}
+    .section-title{letter-spacing:.6px}
+    @keyframes jjIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+    @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+    @media print{.dashboard-menu,.container,.card-nota{animation:none!important}}
   </style>
 </head>
 <body>
@@ -1296,9 +1313,8 @@
         };
 
         let histHtml = dev.historico.map((h, idx) => {
-          // Adição aumenta a dívida (vermelho); subtração/ pagamento reduz (verde).
           let simbolo = '➕';
-          let cor = '#ff4444';
+          let cor = '#ff4d4d';
           if (h.tipo === 'sub') { simbolo = '➖'; cor = '#25d366'; }
           return `
             <div class="item-historico-linha">
@@ -1312,10 +1328,7 @@
           <div class="dev-header">
             <div class="dev-id">
               <div class="avatar">${esc((dev.nome || '?').trim().charAt(0).toUpperCase())}</div>
-              <div>
-                <div class="dev-nome">${esc(dev.nome)}</div>
-                <div class="dev-tel">${dev.telefone ? `<a class="dev-whatsapp" href="https://wa.me/${String(dev.telefone).replace(/\D/g, '').replace(/^(\d{10,11})$/, '55$1')}" target="_blank" rel="noopener noreferrer" aria-label="Conversar pelo WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.4 1.3h.1C18.7 23.6 24 18.3 24 11.8c0-3.1-1.2-6.1-3.5-8.3ZM12.2 21.6h-.1a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.3-.4a9.8 9.8 0 1 1 8.7 4.8Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5s-.7-1.6-.9-2.1c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.1-1.4-.1-.1-.3-.2-.6-.3Z"/></svg>${esc(dev.telefone)}</a>` : 'Sem telefone'}</div>
-              </div>
+              <div><div class="dev-nome">${esc(dev.nome)}</div><div class="dev-tel">${dev.telefone ? esc(dev.telefone) : 'Sem telefone'}</div></div>
             </div>
             <div class="dev-saldo-box">
               <span class="dev-saldo ${(dev.saldo || 0) > 0 ? '' : 'quit'}">R$ ${(dev.saldo || 0).toFixed(2).replace('.', ',')}</span>
@@ -1343,167 +1356,120 @@
     }
 
     /* GERADOR DE IMAGEM & COMPARTILHAMENTO DE EXTRATO */
-    function gerarECompartilharImagem(key) {
+    async function gerarECompartilharImagem(key) {
       const dev = todosDevedores.find(d => d.idKey === key);
       if (!dev) return;
+      try { await Promise.all([document.fonts.load('800 20px Montserrat'), document.fonts.load('600 16px Montserrat')]); } catch (e) {}
 
       const canvas = document.createElement('canvas');
       const ctx = canvas.getContext('2d');
-      
-      const width = 600;
-      const histCount = dev.historico ? dev.historico.length : 0;
-      const height = 450 + (histCount * 30);
-      
-      canvas.width = width;
-      canvas.height = height;
+      const W = 600, S = 2;                       // S = 2 → imagem em alta resolução (1200 px)
+      const FONT = "'Montserrat', Arial, Helvetica, sans-serif";
+      const hist = dev.historico || [];
+      const brl = v => 'R$ ' + (Number(v) || 0).toFixed(2).replace('.', ',');
+      const saldo = dev.saldo || 0;
+      const infoH = dev.telefone ? 74 : 46;
+      const rowH = 36;
+      const yTable = 218 + infoH + 14;
+      const yRows = yTable + 34;
+      const rowsH = Math.max(hist.length, 1) * rowH;
+      const yTotal = yRows + rowsH + 18;
+      const H = yTotal + 70 + 66;
+      canvas.width = W * S; canvas.height = H * S;
+      ctx.scale(S, S);
+      ctx.textBaseline = 'alphabetic';
 
-      ctx.fillStyle = "#0a0a0a";
-      ctx.fillRect(0, 0, width, height);
+      const rr = (x, y, w, h, r) => { ctx.beginPath(); ctx.roundRect ? ctx.roundRect(x, y, w, h, r) : ctx.rect(x, y, w, h); };
+      const fitText = (t, max) => { let s = String(t); if (ctx.measureText(s).width <= max) return s; while (s.length > 1 && ctx.measureText(s + '…').width > max) s = s.slice(0, -1); return s + '…'; };
 
-      ctx.strokeStyle = "#ff0000";
-      ctx.lineWidth = 6;
-      ctx.strokeRect(10, 10, width - 20, height - 20);
+      // fundo + moldura
+      const bg = ctx.createLinearGradient(0, 0, 0, H);
+      bg.addColorStop(0, '#0d0d12'); bg.addColorStop(1, '#050507');
+      ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+      const bd = ctx.createLinearGradient(0, 0, W, H);
+      bd.addColorStop(0, '#ff2d3d'); bd.addColorStop(.5, '#8a0f1a'); bd.addColorStop(1, '#ff2d3d');
+      ctx.strokeStyle = bd; ctx.lineWidth = 4; rr(10, 10, W - 20, H - 20, 18); ctx.stroke();
 
-      try { if (LOGO_IMG.complete && LOGO_IMG.naturalWidth) ctx.drawImage(LOGO_IMG, 26, 24, 84, 84); } catch (e) {}
+      // logo
+      try { if (LOGO_IMG.complete && LOGO_IMG.naturalWidth) ctx.drawImage(LOGO_IMG, 36, 30, 120, 120); } catch (e) {}
 
-      ctx.fillStyle = "#ff0000";
-      ctx.font = "bold 38px 'Times New Roman', serif";
-      ctx.textAlign = "center";
-      ctx.fillText("J&J AUTOMOTORS", width / 2, 60);
-
-      ctx.fillStyle = "#ffffff";
-      ctx.font = "14px Arial";
-      ctx.textAlign = "center";
-      ctx.fillText("Serviços de qualidade", width / 2, 85);
-
-      // Ícone WhatsApp desenhado no próprio canvas, sem depender de imagens externas.
-      const drawWhatsApp = (x, y, size) => {
-        ctx.save();
-        ctx.fillStyle = "#25d366";
-        ctx.beginPath();
-        ctx.arc(x + size / 2, y + size / 2, size / 2, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.strokeStyle = "#ffffff";
-        ctx.lineWidth = 2.2;
-        ctx.lineCap = "round";
-        ctx.lineJoin = "round";
-        ctx.beginPath();
-        ctx.arc(x + size / 2, y + size / 2, size * .29, -.8, 2.25);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(x + size * .29, y + size * .72);
-        ctx.lineTo(x + size * .20, y + size * .84);
-        ctx.lineTo(x + size * .40, y + size * .78);
-        ctx.stroke();
-        ctx.restore();
+      // contatos com ícones (WhatsApp / Instagram)
+      const waPaths = [...WA_SVG.matchAll(/<path fill="([^"]+)" d="([^"]+)"/g)].map(m => ({ c: m[1], p: new Path2D(m[2]) }));
+      const drawWA = (x, y, s) => { ctx.save(); ctx.translate(x, y); ctx.scale(s / 24, s / 24); waPaths.forEach(w => { ctx.fillStyle = w.c; ctx.fill(w.p); }); ctx.restore(); };
+      const drawIG = (x, y, s) => {
+        const g = ctx.createLinearGradient(x, y + s, x + s, y);
+        g.addColorStop(0, '#fdc468'); g.addColorStop(.35, '#fd5949'); g.addColorStop(.7, '#d6249f'); g.addColorStop(1, '#5b51d8');
+        ctx.fillStyle = g; rr(x, y, s, s, s * .28); ctx.fill();
+        ctx.strokeStyle = '#fff'; ctx.lineWidth = s * .075;
+        rr(x + s * .2, y + s * .2, s * .6, s * .6, s * .17); ctx.stroke();
+        ctx.beginPath(); ctx.arc(x + s / 2, y + s / 2, s * .15, 0, Math.PI * 2); ctx.stroke();
+        ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(x + s * .69, y + s * .31, s * .04, 0, Math.PI * 2); ctx.fill();
       };
-      // Ícone do Instagram em traço branco.
-      const drawInstagram = (x, y, size) => {
-        ctx.save();
-        ctx.strokeStyle = "#ffffff";
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.roundRect(x, y, size, size, size * .25);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.arc(x + size / 2, y + size / 2, size * .23, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.fillStyle = "#ffffff";
-        ctx.beginPath();
-        ctx.arc(x + size * .75, y + size * .26, size * .055, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-      };
+      ctx.textAlign = 'left'; ctx.fillStyle = '#ffffff'; ctx.font = `700 20px ${FONT}`;
+      drawWA(190, 54, 34);  ctx.fillText('83 98710-0025', 236, 79);
+      drawIG(190, 100, 34); ctx.fillText('@JeJ_automotors', 236, 125);
 
-      ctx.font = "13px Arial";
-      ctx.textAlign = "left";
-      const contactY = 98;
-      drawWhatsApp(145, contactY - 11, 20);
-      ctx.fillStyle = "#ffffff";
-      ctx.fillText("(83) 98710-0025", 171, contactY + 4);
-      drawInstagram(325, contactY - 10, 19);
-      ctx.fillText("@JeJ_automotors", 352, contactY + 4);
+      // divisor
+      const dv = ctx.createLinearGradient(30, 0, W - 30, 0);
+      dv.addColorStop(0, 'rgba(255,45,61,0)'); dv.addColorStop(.5, '#ff2d3d'); dv.addColorStop(1, 'rgba(255,45,61,0)');
+      ctx.fillStyle = dv; ctx.fillRect(30, 168, W - 60, 2);
 
-      ctx.strokeStyle = "#333333";
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(30, 125);
-      ctx.lineTo(width - 30, 125);
-      ctx.stroke();
+      // título
+      ctx.textAlign = 'center'; ctx.fillStyle = '#ff3b4a'; ctx.font = `800 20px ${FONT}`;
+      try { ctx.letterSpacing = '2px'; } catch (e) {}
+      ctx.fillText('EXTRATO DE CONTA', W / 2, 204);
+      try { ctx.letterSpacing = '0px'; } catch (e) {}
 
-      ctx.fillStyle = "#ff0000";
-      ctx.font = "bold 20px Arial";
-      ctx.textAlign = "center";
-      ctx.fillText("EXTRATO DE CONTA / DÍVIDA", width / 2, 155);
-
-      ctx.textAlign = "left";
-      ctx.fillStyle = "#ffffff";
-      ctx.font = "bold 16px Arial";
-      ctx.fillText(`Cliente: ${dev.nome}`, 40, 195);
+      // dados do cliente
+      ctx.fillStyle = '#15151c'; rr(36, 218, W - 72, infoH, 12); ctx.fill();
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#8a8a96'; ctx.font = `600 12px ${FONT}`; ctx.fillText('CLIENTE', 54, 242);
+      ctx.fillStyle = '#ffffff'; ctx.font = `800 17px ${FONT}`; ctx.fillText(fitText(dev.nome, W - 130), 54, 264);
       if (dev.telefone) {
-        drawWhatsApp(40, 204, 16);
-        ctx.font = "13px Arial";
-        ctx.fillText(dev.telefone, 62, 217);
+        ctx.fillStyle = '#8a8a96'; ctx.font = `600 12px ${FONT}`; ctx.fillText('TELEFONE', 54, 284);
+        ctx.fillStyle = '#dddddd'; ctx.font = `700 14px ${FONT}`; ctx.fillText(dev.telefone, 128, 285);
       }
 
-      ctx.fillStyle = "#222222";
-      ctx.fillRect(40, 240, width - 80, 30);
-      ctx.fillStyle = "#ff0000";
-      ctx.font = "bold 14px Arial";
-      ctx.fillText("DATA", 50, 260);
-      ctx.fillText("DESCRIÇÃO", 180, 260);
-      ctx.textAlign = "right";
-      ctx.fillText("VALOR (R$)", width - 50, 260);
+      // tabela
+      ctx.fillStyle = '#22222b'; rr(36, yTable, W - 72, 30, 8); ctx.fill();
+      ctx.fillStyle = '#ff3b4a'; ctx.font = `800 12px ${FONT}`;
+      ctx.fillText('DATA', 52, yTable + 20); ctx.fillText('DESCRIÇÃO', 150, yTable + 20);
+      ctx.textAlign = 'right'; ctx.fillText('VALOR', W - 52, yTable + 20);
 
-      let currentY = 295;
-      if (dev.historico && dev.historico.length > 0) {
-        dev.historico.forEach(h => {
-          ctx.textAlign = "left";
-          ctx.fillStyle = "#cccccc";
-          ctx.font = "14px Arial";
-          ctx.fillText(h.data, 50, currentY);
-
-          let descText = h.desc ? h.desc : (h.tipo === 'add' ? "Adição de valor" : "Abatimento / Pagamento");
-          if (descText.length > 25) descText = descText.substring(0, 22) + "...";
-          ctx.fillText(descText, 180, currentY);
-
-          ctx.textAlign = "right";
-          if (h.tipo === 'add') {
-            ctx.fillStyle = "#ff4444";
-            ctx.fillText(`+ R$ ${h.valor.toFixed(2).replace('.', ',')}`, width - 50, currentY);
-          } else {
-            ctx.fillStyle = "#25d366";
-            ctx.fillText(`- R$ ${h.valor.toFixed(2).replace('.', ',')}`, width - 50, currentY);
-          }
-          currentY += 30;
+      let y = yRows;
+      if (hist.length) {
+        hist.forEach((h, i) => {
+          if (i % 2 === 0) { ctx.fillStyle = 'rgba(255,255,255,.035)'; ctx.fillRect(36, y, W - 72, rowH); }
+          ctx.textAlign = 'left'; ctx.fillStyle = '#b8b8c2'; ctx.font = `600 13px ${FONT}`;
+          ctx.fillText(h.data, 52, y + 23);
+          ctx.fillStyle = '#e6e6ec';
+          ctx.fillText(fitText(h.desc ? h.desc : (h.tipo === 'add' ? 'Adição de valor' : 'Pagamento / Abatimento'), 230), 150, y + 23);
+          ctx.textAlign = 'right'; ctx.font = `800 14px ${FONT}`;
+          // dívida lançada = vermelho | pagamento = verde
+          ctx.fillStyle = h.tipo === 'add' ? '#ff4d4d' : '#25d366';
+          ctx.fillText((h.tipo === 'add' ? '+ ' : '− ') + brl(h.valor), W - 52, y + 23);
+          y += rowH;
         });
       } else {
-        ctx.textAlign = "center";
-        ctx.fillStyle = "#888888";
-        ctx.fillText("Nenhum lançamento registrado.", width / 2, currentY);
-        currentY += 30;
+        ctx.textAlign = 'center'; ctx.fillStyle = '#888'; ctx.font = `600 13px ${FONT}`;
+        ctx.fillText('Nenhum lançamento registrado.', W / 2, y + 23);
       }
 
-      ctx.strokeStyle = "#333333";
-      ctx.beginPath();
-      ctx.moveTo(30, currentY + 10);
-      ctx.lineTo(width - 30, currentY + 10);
-      ctx.stroke();
+      // total
+      const quit = saldo <= 0;
+      const cor = quit ? '#25d366' : '#ff4d4d';
+      ctx.fillStyle = quit ? 'rgba(37,211,102,.10)' : 'rgba(255,77,77,.10)'; rr(36, yTotal, W - 72, 62, 14); ctx.fill();
+      ctx.strokeStyle = cor; ctx.lineWidth = 2; rr(36, yTotal, W - 72, 62, 14); ctx.stroke();
+      ctx.textAlign = 'left'; ctx.fillStyle = '#ffffff'; ctx.font = `800 16px ${FONT}`;
+      ctx.fillText(quit ? 'SALDO QUITADO ✓' : 'TOTAL A PAGAR', 56, yTotal + 38);
+      ctx.textAlign = 'right'; ctx.fillStyle = cor; ctx.font = `800 24px ${FONT}`;
+      ctx.fillText(brl(saldo), W - 56, yTotal + 40);
 
-      ctx.fillStyle = "#111111";
-      ctx.fillRect(40, currentY + 25, width - 80, 50);
-      ctx.strokeStyle = "#ff0000";
-      ctx.strokeRect(40, currentY + 25, width - 80, 50);
-
-      ctx.textAlign = "left";
-      ctx.fillStyle = "#ffffff";
-      ctx.font = "bold 18px Arial";
-      ctx.fillText("TOTAL A PAGAR:", 60, currentY + 57);
-
-      ctx.textAlign = "right";
-      ctx.fillStyle = (dev.saldo || 0) > 0 ? "#ff4444" : "#25d366";
-      ctx.font = "bold 22px Arial";
-      ctx.fillText(`R$ ${(dev.saldo || 0).toFixed(2).replace('.', ',')}`, width - 60, currentY + 58);
+      // rodapé
+      ctx.textAlign = 'center'; ctx.fillStyle = '#8a8a96'; ctx.font = `600 12px ${FONT}`;
+      ctx.fillText('Serviços de qualidade • Você encontra aqui', W / 2, yTotal + 94);
+      ctx.fillStyle = '#5c5c68'; ctx.font = `600 10px ${FONT}`;
+      ctx.fillText('Emitido em ' + new Date().toLocaleDateString('pt-BR'), W / 2, yTotal + 112);
 
       canvas.toBlob(blob => {
         const file = new File([blob], `Extrato_${dev.nome.replace(/\s+/g, '_')}.png`, { type: 'image/png' });
