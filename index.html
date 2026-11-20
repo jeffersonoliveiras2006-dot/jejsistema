@@ -31,12 +31,26 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="J&amp;J Automotors">
   <meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
   <title>J&J Automotors - Sistema Integrado</title>
+  <script>
+    /* TEMA: automático (segue o aparelho) | claro | escuro */
+    function jjTema(){ try { return localStorage.getItem('jj_tema') || 'auto'; } catch (e) { return 'auto'; } }
+    function aplicarTema(){
+      var t = jjTema(), mq = window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches;
+      var claro = t === 'claro' || (t === 'auto' && mq);
+      document.documentElement.classList.toggle('tema-claro', claro);
+      var m = document.querySelector('meta[name=theme-color]'); if (m) m.content = claro ? '#f2f2f5' : '#07070a';
+      document.querySelectorAll('.tema-seg button').forEach(function (b) { b.classList.toggle('on', b.dataset.tema === t); });
+    }
+    function definirTema(t){ try { localStorage.setItem('jj_tema', t); } catch (e) {} aplicarTema(); }
+    aplicarTema();
+    try { matchMedia('(prefers-color-scheme: light)').addEventListener('change', aplicarTema); } catch (e) {}
+  </script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -417,6 +431,133 @@
     @keyframes jjIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
     @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
     @media print{.dashboard-menu,.container,.card-nota{animation:none!important}}
+
+    /* ===== FONTE + TEMA CLARO + ÍCONES ===== */
+    body,button,input,select,textarea{font-family:'Montserrat',Arial,Helvetica,sans-serif}
+    .ic{display:inline-block;width:1.15em;height:1.15em;vertical-align:-.2em;background:currentColor;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat}
+    .btn-dash .ic{width:2.1rem;height:2.1rem}
+    .tema-seg{display:flex;gap:8px}
+    .tema-seg button{flex:1;padding:12px 6px;border-radius:12px;border:1px solid #2c2c36;background:#15151c;color:#fff;font-weight:700;font-size:.85rem;cursor:pointer}
+    .tema-seg button.on{background:linear-gradient(135deg,#ff2d3d,#c9101f);border-color:#ff2d3d;box-shadow:0 6px 18px rgba(255,45,61,.3)}
+
+    /* ===== TEMA CLARO (cores próprias) ===== */
+    @media screen{
+html:not(.tema-claro){color-scheme:dark}
+html.tema-claro{color-scheme:light}
+html.tema-claro body,html.tema-claro .login-overlay{background:#eef0f4;color:#14141a}
+html.tema-claro .ic{filter:none}
+html.tema-claro body{background-color:#eef0f4;color:#14141a}
+html.tema-claro .login-overlay{background-color:#eef0f4}
+html.tema-claro .login-box{background:#eef0f4}
+html.tema-claro .login-box input{background-color:#ffffff;border:1px solid #d9dce4;color:#14141a}
+html.tema-claro .btn-login{background-color:#ffe6e6;color:#14141a}
+html.tema-claro .erro-senha{color:#e82e2e}
+html.tema-claro .dashboard-menu{background:#eef0f4}
+html.tema-claro .btn-dash{background:#ffffff;color:#14141a}
+html.tema-claro .btn-dash:hover{background:#ffe6e6;color:#14141a}
+html.tema-claro .container{background:#eef0f4}
+html.tema-claro .btn-voltar{background:#d9dce4;color:#14141a;border:1px solid #c5c8d2}
+html.tema-claro .slogan{color:#14141a}
+html.tema-claro .os-numero-box{background:#ffffff}
+html.tema-claro .contato-item{color:#14141a}
+html.tema-claro .status-badge{background-color:#ffffff;color:#1a9347;border:1px solid #f1f2f6}
+html.tema-claro .form-group label{color:#3a3a45}
+html.tema-claro .form-group input,html.tema-claro .form-group select{background-color:#ffffff;border:1px solid #d9dce4;color:#14141a}
+html.tema-claro th,html.tema-claro td{border-bottom:1px solid #f1f2f6}
+html.tema-claro th{background-color:#ffffff}
+html.tema-claro td input{background-color:#ffffff;border:1px solid #d9dce4;color:#14141a}
+html.tema-claro .btn-remover{background:#ffe6e6;color:#14141a}
+html.tema-claro .btn-add{background-color:#ffffff;color:#14141a}
+html.tema-claro .total-box{color:#14141a;background:#eef0f4;border:1px solid #f1f2f6}
+html.tema-claro .total-val{color:#1a9347}
+html.tema-claro .pix-container{background:#eef0f4;border:2px solid #1a9347}
+html.tema-claro .pix-qr-box{background:#14141a}
+html.tema-claro .pix-title{color:#1a9347}
+html.tema-claro .pix-detalhes{color:#3a3a45}
+html.tema-claro .pix-input-code{background:#ffffff;border:1px solid #d9dce4;color:#6b6b78}
+html.tema-claro .resumo-garantia{background-color:#eef0f4;border:1px solid #f1f2f6}
+html.tema-claro .garantia-alertas{border-top:1px dashed #d9dce4;color:#3a3a45}
+html.tema-claro .btn-imprimir{background-color:#ffe6e6;color:#14141a}
+html.tema-claro .btn-historico{background-color:#d9dce4;color:#14141a;border:1px solid #c5c8d2}
+html.tema-claro .historico-section{background-color:#eef0f4}
+html.tema-claro .busca-box input{background-color:#ffffff;border:1px solid #d9dce4;color:#14141a}
+html.tema-claro .card-nota{background-color:#ffffff;border:1px solid #f1f2f6}
+html.tema-claro .card-detalhes{color:#3a3a45}
+html.tema-claro .card-itens{border-top:1px dashed #d9dce4;color:#6b6b78}
+html.tema-claro .btn-edit-card{background-color:#e9e9e7;color:#996600;border:1px solid #996600}
+html.tema-claro .btn-reimprimir-card{background-color:#e7e9eb;color:#2774c2;border:1px solid #2774c2}
+html.tema-claro .btn-excluir-card{background-color:#ebe7e7;color:#d23838}
+html.tema-claro .painel-total-devedores{background:#ffffff}
+html.tema-claro .painel-total-titulo{color:#3a3a45}
+html.tema-claro .painel-total-valor{color:#d23838}
+html.tema-claro .card-devedor{background-color:#ffffff;border:1px solid #d9dce4}
+html.tema-claro .dev-saldo{color:#d23838}
+html.tema-claro .btn-add-dev{background:#ebe7e7;color:#c83c3c;border:1px solid #c83c3c}
+html.tema-claro .btn-sub-dev{background:#e7ebe7;color:#1a9347;border:1px solid #1a9347}
+html.tema-claro .btn-edit-dev{background:#e7e9eb;color:#2774c2;border:1px solid #2774c2}
+html.tema-claro .btn-share-dev{border:1px solid #1a9347}
+html.tema-claro .dev-historico-lista{color:#3a3a45;border-top:1px dashed #d9dce4}
+html.tema-claro .item-historico-linha{border-bottom:1px solid #f1f2f6}
+html.tema-claro .btn-edit-item-hist{background:#e9e9e7;color:#996600;border:1px solid #996600}
+html.tema-claro .modal-card{background:#eef0f4}
+html.tema-claro .modal-card h3{border-bottom:1px solid #d9dce4}
+html.tema-claro .btn-modal-cancelar{background:#d9dce4;color:#14141a;border:1px solid #c5c8d2}
+html.tema-claro .btn-modal-confirmar{background:#ffe6e6;color:#14141a}
+html.tema-claro body{background:radial-gradient(1100px 600px at 50% -10%,#eae6e6 0%,#e6e6e6 62%) fixed}
+html.tema-claro .login-overlay{background:radial-gradient(900px 500px at 50% 0%,#eae6e6,#e6e6e6)}
+html.tema-claro .login-box,html.tema-claro .dashboard-menu,html.tema-claro .container{background:linear-gradient(160deg,#ffffff,#e7e7e7);border:1px solid #d9dce4}
+html.tema-claro .login-box input,html.tema-claro .form-group input,html.tema-claro .form-group select,html.tema-claro .busca-box input,html.tema-claro td input{border:1px solid #d9dce4;background:#e7e7e7}
+html.tema-claro .login-box input:focus,html.tema-claro .form-group input:focus,html.tema-claro .form-group select:focus,html.tema-claro .busca-box input:focus{border-color:#ed2a39}
+html.tema-claro .btn-login,html.tema-claro .btn-imprimir,html.tema-claro .btn-modal-confirmar{background:linear-gradient(135deg,#ff2d3d,#fae7e9)}
+html.tema-claro .btn-dash{background:linear-gradient(160deg,#ffffff,#e7e7e7);border:1px solid #d9dce4}
+html.tema-claro .btn-dash:hover{background:linear-gradient(135deg,#ff2d3d,#fae7e9);border-color:#ed2a39}
+html.tema-claro .btn-add:hover{background:#f1f2f6}
+html.tema-claro .section-title{border-left:4px solid #ed2a39;color:#c93a45}
+html.tema-claro .card-nota,html.tema-claro .card-devedor{background:#e7e7e8;border-color:#d9dce4}
+html.tema-claro .modal-card{border:1px solid #d9dce4}
+html.tema-claro .lembrar{color:#3a3a45}
+html.tema-claro .cfg-card{background:#e7e7e7;border:1px solid #d9dce4}
+html.tema-claro .cfg-ajuda{color:#6b6b78}
+html.tema-claro #toast{background:#f1f2f6;color:#14141a;border:1px solid #ed2a39}
+html.tema-claro .pago-box select{background:#e7e7e7;border:1px solid #d9dce4;color:#14141a}
+html.tema-claro .banner-os.ok{background:#e7eae8;border:1px solid #189446;color:#39905c}
+html.tema-claro .banner-os.pend{background:#eae9e6;border:1px solid #996600;color:#99792e}
+html.tema-claro .btn-salvar,html.tema-claro .btn-nova{color:#14141a}
+html.tema-claro .btn-nova{background:#d9dce4;border:1px solid #c5c8d2}
+html.tema-claro .g-ok{color:#39905c}
+html.tema-claro .g-alerta{color:#99792e}
+html.tema-claro .g-venc{color:#b9414a}
+html.tema-claro .g-none{color:#6b6b78}
+html.tema-claro .busca-box select{background:#e7e7e7;border:1px solid #d9dce4;color:#14141a}
+html.tema-claro header{border-image:linear-gradient(90deg,#ed2a39,rgba(255,45,61,0)) 1}
+html.tema-claro ::-webkit-scrollbar-thumb{background:#d9dce4}
+html.tema-claro ::placeholder{color:#6b6b78}
+html.tema-claro tbody tr:hover td{background:#e7e7e8}
+html.tema-claro .card-nota{border-left:4px solid #995f11}
+html.tema-claro .card-nota:hover{background:#e8e8e8}
+html.tema-claro .card-nota.paga{border-left-color:#189446}
+html.tema-claro .card-nota .card-header{color:#14141a}
+html.tema-claro .card-nota .card-header b{color:#c93a45}
+html.tema-claro .card-nota .tot{color:#39905c}
+html.tema-claro .chev{color:#6b6b78}
+html.tema-claro .chip{background:#f1f2f6;border:1px solid #d9dce4}
+html.tema-claro .chip.pago{color:#39905c;border-color:#189446;background:#e7eae8}
+html.tema-claro .chip.pend{color:#99792e;border-color:#86670f;background:#eae9e6}
+html.tema-claro .chip.g-venc{background:#eae7e7}
+html.tema-claro .painel-total-devedores{background:linear-gradient(135deg,#e8e6e7,#e7e7e7)}
+html.tema-claro .painel-sub{color:#6b6b78}
+html.tema-claro .card-devedor{border-left:4px solid #995f11;background:#e7e7e8;border-color:#d9dce4}
+html.tema-claro .card-devedor:hover{background:#e8e8e8}
+html.tema-claro .card-devedor.quitado{border-left-color:#189446}
+html.tema-claro .avatar{background:linear-gradient(135deg,#ff2d3d,#fae7e9)}
+html.tema-claro .dev-nome{color:#14141a}
+html.tema-claro .dev-tel{color:#6b6b78}
+html.tema-claro .dev-saldo.quit{color:#39905c}
+html.tema-claro input:focus,html.tema-claro select:focus,html.tema-claro textarea:focus{border-color:#ed2a39!important}
+html.tema-claro .card-nota:hover{border-color:#c5c8d2}
+html.tema-claro .tema-seg button{border:1px solid #d9dce4;background:#e8e8e8;color:#14141a}
+html.tema-claro .tema-seg button.on{background:linear-gradient(135deg,#ff2d3d,#fae7e9);border-color:#ed2a39}
+    }
   </style>
 </head>
 <body>
@@ -645,6 +786,15 @@
     <div class="section-title" style="font-size: 1.4rem; margin-bottom: 15px;">⚙️ Configurações</div>
 
     <div class="cfg-card">
+      <div class="section-title" style="margin-top:0"><i class="ic" data-ic="sun"></i> Aparência</div>
+      <div class="tema-seg">
+        <button type="button" data-tema="auto" onclick="definirTema('auto')"><i class="ic" data-ic="auto"></i> Automático</button>
+        <button type="button" data-tema="claro" onclick="definirTema('claro')"><i class="ic" data-ic="sun"></i> Claro</button>
+        <button type="button" data-tema="escuro" onclick="definirTema('escuro')"><i class="ic" data-ic="moon"></i> Escuro</button>
+      </div>
+      <p style="color:#8a8a96;font-size:.78rem;margin-top:10px">Automático acompanha o modo claro ou escuro do aparelho.</p>
+    </div>
+    <div class="cfg-card">
       <div class="section-title">🔒 Segurança deste aparelho</div>
       <p class="cfg-ajuda" id="statusAparelho" style="margin:0 0 12px"></p>
       <button class="btn-add" onclick="sair()">Desconectar este aparelho</button>
@@ -868,9 +1018,21 @@
         document.getElementById('devedoresContainer').style.display = "block";
         carregarDevedores();
       }
+      try { if (history.state && history.state.jj === 'mod') history.replaceState({ jj: 'mod' }, ''); else history.pushState({ jj: 'mod' }, ''); } catch (e) {}
     }
 
+    /* Botão VOLTAR do celular/navegador: fecha janela aberta ou volta ao menu */
     function voltarAoMenu() {
+      if (history.state && history.state.jj === 'mod') history.back(); else mostrarMenuInicial();
+    }
+    window.addEventListener('popstate', function () {
+      const abertos = ['modalAdd', 'modalPago', 'modalSub', 'modalEditDev', 'modalEditItemHist']
+        .some(id => { const e = document.getElementById(id); return e && e.style.display === 'flex'; });
+      if (abertos) { fecharModais(); try { history.pushState({ jj: 'mod' }, ''); } catch (e) {} return; }
+      mostrarMenuInicial();
+    });
+
+    function mostrarMenuInicial() {
       document.getElementById('configContainer').style.display = "none";
       document.getElementById('osContainer').style.display = "none";
       document.getElementById('devedoresContainer').style.display = "none";
@@ -1639,6 +1801,55 @@
     document.getElementById('dataNota').addEventListener('change', atualizarGarantia);
     atualizarGarantia();
     autoLogin();
+    /* ÍCONES (substituem os emojis, inclusive em telas geradas depois) */
+    (function(){
+      const P={
+        check:'<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>',
+        pencil:'<path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>',
+        plus:'<path d="M5 12h14M12 5v14"/>', minus:'<path d="M5 12h14"/>',
+        alert:'<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/>',
+        save:'<path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"/><path d="M17 21v-8H7v8M7 3v5h8"/>',
+        cash:'<rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/>',
+        gear:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>',
+        clip:'<rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>',
+        print:'<path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/>',
+        search:'<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+        shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/>',
+        hourglass:'<path d="M5 22h14M5 2h14M17 22v-4.17a2 2 0 0 0-.59-1.42L12 12l-4.41 4.41A2 2 0 0 0 7 17.83V22M7 2v4.17a2 2 0 0 0 .59 1.42L12 12l4.41-4.41A2 2 0 0 0 17 6.17V2"/>',
+        trash:'<path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6"/>',
+        file:'<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2Z"/><path d="M14 2v6h6M8 13h8M8 17h8"/>',
+        wallet:'<path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/>',
+        lock:'<rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+        ban:'<circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/>',
+        undo:'<path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/>',
+        phone:'<rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/>',
+        sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+        moon:'<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',
+        auto:'<rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8M12 17v4"/>'
+      };
+      const E={'✅':'check','✏':'pencil','➕':'plus','➖':'minus','⚠':'alert','💾':'save','💸':'cash','⚙':'gear','📋':'clip','🖨':'print','🔍':'search','🛡':'shield','⏳':'hourglass','🗑':'trash','📄':'file','💰':'wallet','🔒':'lock','⛔':'ban','↩':'undo','📲':'phone'};
+      const RX=new RegExp('('+Object.keys(E).join('|')+')\\uFE0F?','g');
+      const uri=n=>'url("data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+P[n]+'</svg>')+'")';
+      const mk=n=>{const i=document.createElement('i');i.className='ic';i.style.setProperty('--m',uri(n));return i;};
+      const SKIP=/^(SCRIPT|STYLE|OPTION|TEXTAREA|TITLE|NOSCRIPT|INPUT)$/;
+      function conv(root){
+        if(root.nodeType===1){ root.querySelectorAll&&root.querySelectorAll('[data-ic]').forEach(e=>{e.style.setProperty('--m',uri(e.dataset.ic));e.removeAttribute('data-ic');}); if(root.dataset&&root.dataset.ic){root.style.setProperty('--m',uri(root.dataset.ic));root.removeAttribute('data-ic');} }
+        const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>(!SKIP.test(n.parentNode.nodeName)&&n.nodeValue.search(RX)>=0)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT});
+        const list=[]; while(w.nextNode()) list.push(w.currentNode);
+        list.forEach(t=>{
+          const f=document.createDocumentFragment(); let last=0, s=t.nodeValue, m; RX.lastIndex=0;
+          while((m=RX.exec(s))){ if(m.index>last) f.appendChild(document.createTextNode(s.slice(last,m.index))); f.appendChild(mk(E[m[1]])); last=RX.lastIndex; }
+          if(last<s.length) f.appendChild(document.createTextNode(s.slice(last)));
+          t.parentNode.replaceChild(f,t);
+        });
+      }
+      conv(document.body);
+      new MutationObserver(ms=>ms.forEach(m=>{
+        if(m.type==='characterData'){ if(m.target.parentNode&&RX.test(m.target.nodeValue)){RX.lastIndex=0;conv(m.target.parentNode);} RX.lastIndex=0; }
+        else m.addedNodes.forEach(n=>{ if(n.nodeType===1) conv(n); else if(n.nodeType===3&&n.parentNode){RX.lastIndex=0;if(RX.test(n.nodeValue)){RX.lastIndex=0;conv(n.parentNode);}RX.lastIndex=0;} });
+      })).observe(document.body,{childList:true,subtree:true,characterData:true});
+      aplicarTema();
+    })();
   </script>
 </body>
 </html>
